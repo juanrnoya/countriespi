@@ -2,15 +2,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 import {
    getCountries,
    sortByPopulation,
    filterByContinent,
    sortByAlp,
 } from "../../redux/actions";
+
 import Card from "../Card/Card";
 import Page from "../Page/Page";
-import Form from "../Form/Form";
 
 export default function Home() {
    const allCountry = useSelector((state) => state.country);
