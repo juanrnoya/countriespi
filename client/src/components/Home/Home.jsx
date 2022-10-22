@@ -12,14 +12,14 @@ import {
 
 import Card from "../Card/Card";
 import Page from "../Page/Page";
+import SearchBar from "../SearchBar/SearchBar";
 
 export default function Home() {
    const allCountry = useSelector((state) => state.country);
 
    const allPopulation = useSelector((state) => state.population);
    const [order, setOrder] = useState("");
-   console.log("soy population", allPopulation);
-   console.log("soy population", allCountry);
+
    const [currentPage, setCurrentPage] = useState(1);
    const [countryPerPage, setCountryPerPage] = useState(10);
    const indexOfLastCountry = currentPage * countryPerPage; //20;
@@ -29,7 +29,6 @@ export default function Home() {
       indexOfFirstCountry,
       indexOfLastCountry
    );
-   //console.log(currentCountry);
 
    const paginated = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -68,6 +67,7 @@ export default function Home() {
       <div>
          <h1>Welcome to Countries PI</h1>
          <nav>
+            <SearchBar setCurrentPage={setCurrentPage} />
             <select>
                <option>By Activity</option>
                <option>Without Activities</option>
@@ -110,6 +110,7 @@ export default function Home() {
                paginated={paginated}
             />
          </div>
+
          <br />
          <div>
             {currentCountry.length ? (
@@ -129,13 +130,13 @@ export default function Home() {
                <div>Loading...</div>
             )}
          </div>
-         <div>
+         {/* <div>
             <Page
                countryPerPage={countryPerPage}
                allCountry={allCountry.length}
                paginated={paginated}
             />
-         </div>
+         </div> */}
       </div>
    );
 }
