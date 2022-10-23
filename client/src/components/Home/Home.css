@@ -1,1 +1,16 @@
 /** @format */
+.home-cards {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   border-radius: 5px;
+}
+.card {
+   border-radius: 15px;
+   background: lightblue;
+   margin: 10px;
+}
+.card-image {
+   border-top-left-radius: 15px;
+   border-top-right-radius: 15px;
+}
