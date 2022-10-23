@@ -1,5 +1,6 @@
 /** @format */
 import axios from "axios";
+import { $CombinedState } from "redux";
 
 export function getCountries() {
    return async function (dispatch) {
@@ -8,6 +9,23 @@ export function getCountries() {
          type: "GET_COUNTRY",
          payload: call.data,
       });
+   };
+}
+
+export function getCountryByName(payload) {
+   console.log(payload);
+   return async function (dispatch) {
+      try {
+         let country = await axios(
+            `http://localhost:3001/countries?name=${payload}`
+         );
+         return dispatch({
+            type: "GET_COUNTRY_BY_NAME",
+            payload: country.data,
+         });
+      } catch (error) {
+         console.log(error);
+      }
    };
 }
 

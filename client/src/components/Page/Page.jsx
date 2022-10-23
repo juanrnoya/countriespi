@@ -12,7 +12,11 @@ export default function Page({ countryPerPage, paginated, allCountry }) {
             {pageNumber &&
                pageNumber.map((e) => (
                   <fragment key={e}>
-                     <button onClick={() => paginated(e)}>{e}</button>
+                     <button
+                        className='button-page'
+                        onClick={() => paginated(e)}>
+                        {e}
+                     </button>
                   </fragment>
                ))}
          </ul>

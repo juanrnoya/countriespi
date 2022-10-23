@@ -15,5 +15,50 @@
    border-top-right-radius: 15px;
 }
 .home {
+   background-color: lightsteelblue;
+}
+.nav-home {
+   display: flex;
+   justify-content: space-around;
+   border: 30px;
+}
+
+.search-bar {
+   text-align: left;
+}
+.sub-nav {
+   box-shadow: 3px 6px 4px grey;
+   background-color: lightgrey;
+   border: px solid black;
+   border-radius: 7px;
+   text-align: left;
+   padding: 5px;
+   width: 30%;
+}
+select {
+   width: 80%;
+}
+.header {
+   align-content: center;
+}
+.title {
+   font-family: "times new roman";
+   color: yellow;
+   border: px solid black;
+   border-radius: 7px;
+}
+#title {
+   text-shadow: 3px 3px 2px grey;
+}
+button {
+   box-shadow: 2px 3px 3px grey;
+   border: 1px solid grey;
+   border-radius: 7px;
+   margin: 2px;
+}
+.home {
    background: black;
+}
+.button-page {
+   background-color: lightcoral;
 }

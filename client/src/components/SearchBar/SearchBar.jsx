@@ -2,16 +2,14 @@
 
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCountries } from "../../redux/actions";
+import { getCountries, getCountryByName } from "../../redux/actions";
 
 function SearchBar({ setCurrentPage }) {
    //  const [order, setOrder] = useState("");
-   const allCountry2 = useSelector((state) => state.allCountries);
+
    const [name, setName] = useState("");
 
    const dispatch = useDispatch();
-
-   //console.log(name);
 
    function handleInputChange(e) {
       e.preventDefault();
@@ -19,21 +17,10 @@ function SearchBar({ setCurrentPage }) {
    }
    function handleSubmit(e) {
       e.preventDefault();
-      const countryFilterByName = allCountry2.filter(
-         (e) => e.name.toLowerCase() === name.toLowerCase()
-      );
-
-      if (name && (!countryFilterByName || countryFilterByName.length === 0)) {
-         alert("Country searched does not exists");
-      } else if (!name) {
-         alert("Type a country name");
-      } else {
-         dispatch(getCountries(name));
-         setName("");
-         setCurrentPage(1);
-         // setOrder(e.target.value);
-      }
-      console.log(countryFilterByName);
+      dispatch(getCountryByName(name));
+      setName("");
+      setCurrentPage(1);
+      // setOrder(e.target.value);
    }
 
    return (

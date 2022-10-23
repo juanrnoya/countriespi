@@ -1,3 +1,5 @@
+import { strictEqual } from "assert";
+
 /** @format */
 const initialState = {
    country: [],
@@ -24,6 +26,11 @@ function rootReducer(state = initialState, action) {
          return {
             ...state,
             country: CountriesSortedByContinent,
+         };
+      case "GET_COUNTRY_BY_NAME":
+         return {
+            ...state,
+            country: action.payload,
          };
 
       case "SORT_POPULATION":
