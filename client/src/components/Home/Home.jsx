@@ -65,43 +65,51 @@ export default function Home() {
       setOrder(e.target.value);
    }
    return (
-      <div>
+      <div className='home'>
          <h1>Welcome to Countries PI</h1>
          <nav>
-            <SearchBar setCurrentPage={setCurrentPage} />
-            <select>
-               <option>By Activity</option>
-               <option>Without Activities</option>
-               <option>With Activities</option>
-            </select>
-            <div>
-               <select onChange={(e) => handleSortAlp(e)}>
-                  <option>Countries Alphabetically</option>
-                  <option value='From A-Z'>From A-Z</option>
-                  <option value='From Z-A'>From Z-A</option>
+            <table>
+               <SearchBar setCurrentPage={setCurrentPage} />
+
+               <select>
+                  <option>By Activity</option>
+                  <option>Without Activities</option>
+                  <option>With Activities</option>
                </select>
-               <select onChange={(e) => handleSort(e)}>
-                  <option>By Population</option>
-                  <option value='max'>Max to Min</option>
-                  <option value='min'>Min to Max</option>
-               </select>
-               <select onChange={(e) => handleFilterContinent(e)}>
-                  <option value='All'>All</option>
-                  <option value='Asia'>Asia</option>
-                  <option value='Oceania'>Oceania</option>
-                  <option value='Europe'>Europe</option>
-                  <option value='North America'>North America</option>
-                  <option value='South America'>South America</option>
-                  <option value='Antarctic'>Antarctic</option>
-                  <option value='Africa'>Africa</option>
-               </select>
-            </div>
-            <div>
-               <button onClick={(e) => handleClick(e)}>LOAD COUNTRIES</button>
-               <Link to='/form'>
-                  <button name='newActivity'>New Activity</button>
-               </Link>
-            </div>
+
+               <div>
+                  <select onChange={(e) => handleSortAlp(e)}>
+                     <option>Countries Alphabetically</option>
+                     <option value='From A-Z'>From A-Z</option>
+                     <option value='From Z-A'>From Z-A</option>
+                  </select>
+
+                  <select onChange={(e) => handleSort(e)}>
+                     <option>By Population</option>
+                     <option value='max'>Max to Min</option>
+                     <option value='min'>Min to Max</option>
+                  </select>
+                  <select onChange={(e) => handleFilterContinent(e)}>
+                     <option value='All'>All</option>
+                     <option value='Asia'>Asia</option>
+                     <option value='Oceania'>Oceania</option>
+                     <option value='Europe'>Europe</option>
+                     <option value='North America'>North America</option>
+                     <option value='South America'>South America</option>
+                     <option value='Antarctic'>Antarctic</option>
+                     <option value='Africa'>Africa</option>
+                  </select>
+               </div>
+
+               <div>
+                  <button onClick={(e) => handleClick(e)}>
+                     LOAD COUNTRIES
+                  </button>
+                  <Link to='/form'>
+                     <button name='newActivity'>New Activity</button>
+                  </Link>
+               </div>
+            </table>
          </nav>
          <br />
          <div>

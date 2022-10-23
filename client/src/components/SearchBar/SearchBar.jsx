@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCountries } from "../../redux/actions";
 
 function SearchBar({ setCurrentPage }) {
-   const [order, setOrder] = useState("");
+   //  const [order, setOrder] = useState("");
    const allCountry2 = useSelector((state) => state.allCountries);
    const [name, setName] = useState("");
 
@@ -19,21 +19,21 @@ function SearchBar({ setCurrentPage }) {
    }
    function handleSubmit(e) {
       e.preventDefault();
-      const countryFilterByName = allCountry2.filter((e) =>
-         e.name.toLowerCase().includes(name.toLowerCase())
+      const countryFilterByName = allCountry2.filter(
+         (e) => e.name.toLowerCase() === name.toLowerCase()
       );
 
       if (name && (!countryFilterByName || countryFilterByName.length === 0)) {
          alert("Country searched does not exists");
-         console.log(countryFilterByName);
       } else if (!name) {
          alert("Type a country name");
       } else {
-         dispatch(getCountries());
+         dispatch(getCountries(name));
          setName("");
          setCurrentPage(1);
-         setOrder(e.target.value);
+         // setOrder(e.target.value);
       }
+      console.log(countryFilterByName);
    }
 
    return (
@@ -45,7 +45,9 @@ function SearchBar({ setCurrentPage }) {
             onChange={(e) => handleInputChange(e)}
          />
 
-         <button onClick={(e) => handleSubmit(e)}>SEARCH</button>
+         <button onClick={(e) => handleSubmit(e)} type='submit'>
+            SEARCH
+         </button>
       </div>
    );
 }
