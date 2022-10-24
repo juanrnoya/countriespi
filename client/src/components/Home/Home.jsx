@@ -3,6 +3,7 @@ import "./Home.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Image from "./countries.png";
 
 import {
    getCountries,
@@ -65,7 +66,7 @@ export default function Home() {
       setOrder(e.target.value);
    }
    return (
-      <div className='home'>
+      <div className='home' style={{ backgroundImage: `url(${Image})` }}>
          <div className='header'>
             <div className='title'>
                <h1 id='title'>Welcome to Countries PI</h1>
@@ -118,11 +119,11 @@ export default function Home() {
          </nav>
          <br />
          <div>
-            <Page
+            {/* <Page
                countryPerPage={countryPerPage}
                allCountry={allCountry.length}
                paginated={paginated}
-            />
+            /> */}
          </div>
          <br />
          <div className='home-cards'>
@@ -143,13 +144,13 @@ export default function Home() {
                <div>Loading...</div>
             )}
          </div>
-         {/* <div>
+         <div>
             <Page
                countryPerPage={countryPerPage}
                allCountry={allCountry.length}
                paginated={paginated}
             />
-         </div> */}
+         </div>
       </div>
    );
 }

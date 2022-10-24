@@ -1,4 +1,5 @@
 /** @format */
+
 .home-cards {
    display: flex;
    flex-wrap: wrap;
@@ -56,9 +57,9 @@ button {
    border-radius: 7px;
    margin: 2px;
 }
-.home {
+/* .home {
    background: black;
-}
+} */
 .button-page {
    background-color: lightcoral;
 }

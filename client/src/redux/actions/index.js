@@ -37,8 +37,9 @@ export function sortByPopulation(payload) {
    };
 }
 
-export function filterByContinent(payload) {
-   console.log("soy payload continent, ", payload);
+
+export function filterByActivity(payload) {
+   console.log("soy payload activity, ", payload);
    return {
       type: "FILTER_CONTINENT",
       payload,
