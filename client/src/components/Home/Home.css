@@ -3,13 +3,14 @@
    background-attachment: fixed;
    font-family: "times new roman";
 }
+
 .home-cards {
    display: flex;
-
    flex-wrap: wrap;
    justify-content: space-between;
    border-radius: 5px;
 }
+
 .card {
    color: white;
    border-radius: 15px;
@@ -17,6 +18,7 @@
    margin: 10px;
    border: 2px solid white;
 }
+
 #link-card {
    color: white;
    font-size: large;
@@ -38,60 +40,48 @@
 .search-bar {
    text-align: left;
 }
+
 .sub-nav {
    box-shadow: 3px 6px 4px grey;
-
-   border: 2px solid rgb(255, 255, 255);
-   border-radius: 7px;
-   text-align: left;
-   padding: 5px;
-   width: 30%;
-}
-.sub-nav-1 {
-   box-shadow: 3px 6px 4px grey;
-
    border: 2px solid rgb(255, 255, 255);
    border-radius: 7px;
    text-align: left;
    padding: 5px;
    width: 30%;
    display: flex;
+   flex-direction: column;
    align-items: center;
-   justify-content: center;
+   justify-content: flex-end;
 }
+
 select {
    width: 80%;
 }
 
-#title {
+#title-home {
+   color: rgb(241, 254, 2);
    font-weight: bolder;
    font-size: 4rem;
-   display: flex;
-   justify-content: space-around;
-   text-shadow: 6px 6px 15px white;
 
+   text-shadow: 6px 6px 15px white;
    border: 4px solid white;
    border-radius: 7px;
    box-shadow: 3px 6px 10px white;
 }
 
-#title1 {
-   color: rgb(241, 254, 2);
-}
-#title2 {
-   color: rgb(34, 243, 255);
-}
 button {
    box-shadow: 2px 3px 3px grey;
    border: 1px solid grey;
    border-radius: 7px;
    margin: 2px;
 }
+
 #container-button-landing {
    display: flex;
    justify-content: center;
    align-items: center;
 }
+
 .button-landing {
    color: white;
    font-weight: bolder;
@@ -104,8 +94,9 @@ button {
    font-size: 2rem;
    background-color: transparent;
 }
+
 .button-landing:hover {
-   background-color: white;
+   background-color: transparent;
    color: rgb(34, 243, 255);
 }
 
@@ -121,14 +112,15 @@ button {
    border-radius: 7px;
    margin: 3px;
 }
+
 table {
    background-color: transparent;
    border: 1px solid white;
    text-align: left;
    font-size: 2rem;
-
    color: white;
 }
+
 td {
    border: 1px solid grey;
    width: 400px;
@@ -140,34 +132,37 @@ td {
    display: flex;
    flex-direction: column;
 }
+
 #h1-error-page {
    font-weight: bolder;
    font-size: 4rem;
    display: flex;
    justify-content: space-around;
    text-shadow: 6px 6px 15px white;
-
    border: 4px solid white;
    border-radius: 7px;
    box-shadow: 3px 6px 10px white;
    color: rgb(241, 254, 2);
-
    font-size: 3rem;
 }
-#h1-form-page {
-   font-weight: bolder;
-   font-size: 4rem;
+
+#container-h2-form-page {
    display: flex;
-   justify-content: space-around;
-   text-shadow: 6px 6px 15px white;
+   flex-direction: column;
+   align-items: center;
+}
+#h2-form-page {
+   width: 500px;
+   font-weight: bolder;
+   font-size: 2rem;
 
+   text-shadow: 6px 6px 15px white;
    border: 4px solid white;
    border-radius: 7px;
    box-shadow: 3px 6px 10px white;
    color: rgb(241, 254, 2);
-
-   font-size: 3rem;
 }
+
 .button-error {
    color: white;
    font-weight: bolder;
@@ -180,6 +175,7 @@ td {
    font-size: 2rem;
    background-color: transparent;
 }
+
 .button-error:hover {
    background-color: white;
    color: rgb(0, 146, 154);
@@ -189,6 +185,7 @@ td {
    border-radius: 7px;
    font-weight: bolder;
 }
+
 .button-form {
    background-color: transparent;
    box-shadow: 0 2rem 3rem rgba(255, 255, 255, 0.4) inset;
@@ -197,12 +194,12 @@ td {
    border: 3px solid white;
    border-radius: 7px;
    font-weight: bold;
-
    margin: 2px;
    height: 100px;
    width: 200px;
    font-size: 2rem;
 }
+
 .button-form:hover {
    color: rgb(34, 243, 255);
    text-shadow: 2px 2px 4px white;
@@ -212,14 +209,11 @@ td {
    border: 3px solid white;
    background-color: transparent;
 }
-.header-form {
-   height: 100px;
-}
+
 button {
    color: white;
    box-shadow: 0 0.75rem 1rem rgba(255, 255, 255, 0.4) inset;
    text-shadow: 1px 1px 4px white;
-
    border: 1px solid white;
    border-radius: 7px;
    margin: 2px;
@@ -228,13 +222,12 @@ button {
    font-size: 1rem;
    background-color: transparent;
 }
+
 button:hover {
    color: rgb(34, 243, 255);
    text-shadow: 1px 1px 3px white;
    box-shadow: 0 0.75rem 0.25rem rgba(66, 255, 236, 0.4) inset;
-
    background-color: transparent;
-
    border: 1px solid white;
    border-radius: 7px;
 }

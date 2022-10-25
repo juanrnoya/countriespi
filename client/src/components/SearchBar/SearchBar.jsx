@@ -30,6 +30,7 @@ function SearchBar({ setCurrentPage }) {
                onChange={(e) => handleInputChange(e)}
             />
          </div>
+         <br />
          <div>
             <button onClick={(e) => handleSubmit(e)} type='submit'>
                SEARCH

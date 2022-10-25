@@ -49,9 +49,12 @@ const Form = () => {
             width: "100%",
             height: "1000px",
          }}>
-         <div className='header-form'></div>
+         <div id='title-home'>COUNTRIES APP</div>
          <form onSubmit={onSubmit}>
-            <h1 id='h1-form-page'> ADD NEW ACTIVITY</h1>
+            <div id='container-h2-form-page'>
+               <p id='h2-form-page'> ADD NEW ACTIVITY</p>
+            </div>
+
             <table align='center'>
                <caption>
                   {/* <marquee

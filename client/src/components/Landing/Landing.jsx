@@ -12,11 +12,7 @@ function Landing() {
             width: "100%",
             height: "1000px",
          }}>
-         <div id='title'>
-            <p id='title1'>WELCOME TO</p>
-
-            <p id='title2'>COUNTRIES PI </p>
-         </div>
+         <div id='title-home'>COUNTRIES APP</div>
          <br />
 
          <br />
