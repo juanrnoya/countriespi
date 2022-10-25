@@ -7,7 +7,6 @@ const initialState = {
    allCountries: [],
    alphabetically: [],
 };
-
 function rootReducer(state = initialState, action) {
    switch (action.type) {
       case "GET_COUNTRY":
@@ -32,7 +31,6 @@ function rootReducer(state = initialState, action) {
             ...state,
             country: action.payload,
          };
-
       case "SORT_POPULATION":
          const sortPopulation =
             action.payload === "min"
@@ -54,12 +52,10 @@ function rootReducer(state = initialState, action) {
                     }
                     return 0;
                  });
-
          return {
             ...state,
             population: sortPopulation,
          };
-
       case "SORT_ALP":
          const sortAlphabetically =
             action.payload === "From A-Z"

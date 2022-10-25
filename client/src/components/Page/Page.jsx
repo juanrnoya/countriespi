@@ -1,5 +1,5 @@
 /** @format */
-import React from "react";
+import React, { Fragment } from "react";
 
 export default function Page({ countryPerPage, paginated, allCountry }) {
    const pageNumber = [];
@@ -11,13 +11,13 @@ export default function Page({ countryPerPage, paginated, allCountry }) {
          <ul>
             {pageNumber &&
                pageNumber.map((e) => (
-                  <fragment key={e}>
+                  <Fragment key={e}>
                      <button
                         className='button-page'
                         onClick={() => paginated(e)}>
                         {e}
                      </button>
-                  </fragment>
+                  </Fragment>
                ))}
          </ul>
       </nav>

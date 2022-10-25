@@ -53,7 +53,6 @@ const getCountries = async (req, res) => {
       }
    } else {
       try {
-         console.log(name);
          const countriesByName = await Country.findAll({
             where: {
                name: { [Op.iLike]: `%${name}%` },

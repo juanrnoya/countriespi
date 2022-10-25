@@ -1,6 +1,6 @@
 /** @format */
 import axios from "axios";
-import { $CombinedState } from "redux";
+//import { $CombinedState } from "redux";
 
 export function getCountries() {
    return async function (dispatch) {
@@ -13,7 +13,6 @@ export function getCountries() {
 }
 
 export function getCountryByName(payload) {
-   console.log(payload);
    return async function (dispatch) {
       try {
          let country = await axios(
@@ -30,23 +29,19 @@ export function getCountryByName(payload) {
 }
 
 export function sortByPopulation(payload) {
-   console.log("soy payload population, ", payload);
    return {
       type: "SORT_POPULATION",
       payload,
    };
 }
 
-
-export function filterByActivity(payload) {
-   console.log("soy payload activity, ", payload);
+export function filterByContinent(payload) {
    return {
       type: "FILTER_CONTINENT",
       payload,
    };
 }
 export function sortByAlp(payload) {
-   console.log("soy payload Alp, ", payload);
    return {
       type: "SORT_ALP",
       payload,
@@ -56,7 +51,6 @@ export function sortByAlp(payload) {
 export function newActivity(payload) {
    return async function () {
       try {
-         console.log("Soy newActivity payload, ", payload);
          const answer = await axios.post(
             "http://localhost:3001/activities",
             payload

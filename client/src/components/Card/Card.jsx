@@ -13,9 +13,11 @@ export default function Card({ name, img, continent, id }) {
             height='200px'
             width='300x'
          />
-         <h3>{name}</h3>
-         <h5>{continent}</h5>
-         <Link to={`/home/${id}`}>{id}</Link>
+         <h2>{name}</h2>
+         <h3>{continent}</h3>
+         <Link id='link-card' to={`/home/${id}`}>
+            {id}
+         </Link>
       </div>
    );
 }

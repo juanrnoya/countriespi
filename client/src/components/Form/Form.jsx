@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { newActivity } from "../../redux/actions";
+import Image from "./countries.png";
 
 const Form = () => {
    const [formValues, setFormValues] = useState({
@@ -41,96 +42,106 @@ const Form = () => {
    };
 
    return (
-      <div>
+      <div
+         className='home'
+         style={{
+            backgroundImage: `url(${Image})`,
+            width: "100%",
+            height: "1000px",
+         }}>
+         <div className='header-form'></div>
          <form onSubmit={onSubmit}>
-            <table align='center' border='1' bgcolor='lightblue' width='400'>
-               <caption bgcolor='darkblue'>
-                  <marquee
+            <h1 id='h1-form-page'> ADD NEW ACTIVITY</h1>
+            <table align='center'>
+               <caption>
+                  {/* <marquee
                      direction='down'
-                     width='500'
-                     height='200'
-                     behavior='alternate'>
+                     width='450'
+                     height='150'
+                     behavior='alternate'
+                     bgcolor='lightblue'>
                      <marquee behavior='alternate'>
                         <h1>Add New Activity</h1>{" "}
                      </marquee>
-                  </marquee>
+                  </marquee> */}
                </caption>
-               <br />
-               <tr bgcolor='lightblue'>
-                  <td>
-                     <label>Country Name: </label>
-                  </td>
-                  <td>
-                     <select onChange={handleInputChange}>
-                        {allCountry.map((e) => (
-                           <option value={e.name} name='countries' key={e.id}>
-                              {e.name}
-                           </option>
-                        ))}
-                     </select>
-                  </td>
-               </tr>
-               <tr bgcolor='lightblue'>
-                  <td>
-                     <label>Activity Name: </label>
-                  </td>
-                  <td>
-                     <input
-                        value={formValues.name}
-                        onChange={handleInputChange}
-                        name='name'
-                        size='25'
-                        type='text'
-                        placeholder='Type the name of the activity'></input>
-                  </td>
-               </tr>
-               <tr bgcolor='lightblue'>
-                  <td>
-                     <label>Difficulty: </label>
-                  </td>
-                  <td>
-                     <input
-                        value={formValues.difficulty}
-                        onChange={handleInputChange}
-                        name='difficulty'
-                        size='25'
-                        type='text'
-                        placeholder='Level of difficulty from 1-5'></input>
-                  </td>
-               </tr>
-               <tr bgcolor='lightblue'>
-                  <td>
-                     <label>Duration: </label>
-                  </td>
-                  <td>
-                     <input
-                        value={formValues.duration}
-                        onChange={handleInputChange}
-                        name='duration'
-                        size='25'
-                        type='text'
-                        placeholder='How long it takes'></input>
-                  </td>
-               </tr>
-               <tr bgcolor='lightblue'>
-                  <td>
-                     <label>Season: </label>
-                  </td>
-                  <td>
-                     <input
-                        value={formValues.season}
-                        onChange={handleInputChange}
-                        name='season'
-                        size='25'
-                        type='text'
-                        placeholder='Reasonable season to enjoy'></input>
-                  </td>
-               </tr>
+               <tbody>
+                  <tr>
+                     <td>
+                        <label>Country Name: </label>
+                     </td>
+                     <td>
+                        <select onChange={handleInputChange}>
+                           {allCountry.map((e) => (
+                              <option
+                                 value={e.name}
+                                 name='countries'
+                                 key={e.id}>
+                                 {e.name}
+                              </option>
+                           ))}
+                        </select>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <label>Activity Name: </label>
+                     </td>
+                     <td>
+                        <input
+                           value={formValues.name}
+                           onChange={handleInputChange}
+                           name='name'
+                           size='25'
+                           type='text'
+                           placeholder='Type the name of the activity'></input>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <label>Difficulty: </label>
+                     </td>
+                     <td>
+                        <input
+                           value={formValues.difficulty}
+                           onChange={handleInputChange}
+                           name='difficulty'
+                           size='25'
+                           type='text'
+                           placeholder='Level of difficulty from 1-5'></input>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <label>Duration: </label>
+                     </td>
+                     <td>
+                        <input
+                           value={formValues.duration}
+                           onChange={handleInputChange}
+                           name='duration'
+                           size='25'
+                           type='text'
+                           placeholder='How long it takes'></input>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <label>Season: </label>
+                     </td>
+                     <td>
+                        <input
+                           value={formValues.season}
+                           onChange={handleInputChange}
+                           name='season'
+                           size='25'
+                           type='text'
+                           placeholder='Reasonable season to enjoy'></input>
+                     </td>
+                  </tr>
+               </tbody>
             </table>
-            <br />
-            <hr />
-            <br />
-            <button name='Send' className='btn' type='submit'>
+            <button name='Send' className='button-form' type='submit'>
                CREATE
             </button>
          </form>

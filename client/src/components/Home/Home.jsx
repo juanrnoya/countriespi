@@ -19,7 +19,6 @@ import SearchBar from "../SearchBar/SearchBar";
 export default function Home() {
    const allCountry = useSelector((state) => state.country);
 
-   const allPopulation = useSelector((state) => state.population);
    const [order, setOrder] = useState("");
 
    const [currentPage, setCurrentPage] = useState(1);
@@ -69,7 +68,11 @@ export default function Home() {
       <div className='home' style={{ backgroundImage: `url(${Image})` }}>
          <div className='header'>
             <div className='title'>
-               <h1 id='title'>Welcome to Countries PI</h1>
+               <div id='title'>
+                  <p id='title1'>WELCOME TO</p>
+
+                  <p id='title2'> COUNTRIES PI</p>
+               </div>
             </div>
          </div>
          <br />
@@ -98,7 +101,7 @@ export default function Home() {
                </select>
                <br />
                <select onChange={(e) => handleFilterContinent(e)}>
-                  <option value='All'>All</option>
+                  <option value='All Continents'>All Continents</option>
                   <option value='Asia'>Asia</option>
                   <option value='Oceania'>Oceania</option>
                   <option value='Europe'>Europe</option>

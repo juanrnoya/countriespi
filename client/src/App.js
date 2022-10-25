@@ -1,16 +1,22 @@
 /** @format */
 
 import "./App.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Form from "./components/Form/Form";
+import Error from "./components/Error/Error";
+import Landing from "./components/Landing/Landing";
 
 function App() {
    return (
       <Router>
          <div className='App'>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/form' component={Form} />
+            <Switch>
+               <Route exact path='/' component={Landing} />
+               <Route exact path='/home' component={Home} />
+               <Route exact path='/form' component={Form} />
+               <Route path='*' component={Error} />
+            </Switch>
          </div>
       </Router>
    );

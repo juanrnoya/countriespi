@@ -7,7 +7,6 @@ const { getCountries, getId, postActivity } = require("../controllers/country");
 
 router.get("/countries", getCountries);
 router.get("/countries/:id", getId);
-
 router.post("/activities", postActivity);
 
 // Configurar los routers

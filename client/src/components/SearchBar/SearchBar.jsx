@@ -1,12 +1,10 @@
 /** @format */
 
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getCountries, getCountryByName } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+import { getCountryByName } from "../../redux/actions";
 
 function SearchBar({ setCurrentPage }) {
-   //  const [order, setOrder] = useState("");
-
    const [name, setName] = useState("");
 
    const dispatch = useDispatch();
@@ -20,7 +18,6 @@ function SearchBar({ setCurrentPage }) {
       dispatch(getCountryByName(name));
       setName("");
       setCurrentPage(1);
-      // setOrder(e.target.value);
    }
 
    return (
