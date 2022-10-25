@@ -6,6 +6,7 @@ const initialState = {
    population: [],
    allCountries: [],
    alphabetically: [],
+   activity: [],
 };
 function rootReducer(state = initialState, action) {
    switch (action.type) {
@@ -15,6 +16,12 @@ function rootReducer(state = initialState, action) {
             country: action.payload,
             allCountries: action.payload,
          };
+
+      case "FILTER_ACTIVITY":
+         const activity = state.activity;
+         const countriesFilterByActivity =
+            action.payload === "With Activities" ? allCountries : {};
+
       case "FILTER_CONTINENT":
          const allCountries = state.allCountries;
          const CountriesSortedByContinent =

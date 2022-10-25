@@ -1,5 +1,8 @@
 /** @format */
-
+.home {
+   background-attachment: fixed;
+   font-family: "times new roman";
+}
 .home-cards {
    display: flex;
 
@@ -23,15 +26,13 @@
    border-top-left-radius: 15px;
    border-top-right-radius: 15px;
 }
-.home {
-   background-color: rgb(230, 249, 255);
-   background-attachment: fixed;
-   font-family: "times new roman";
-}
+
 .nav-home {
    display: flex;
    justify-content: space-around;
    border: 30px;
+   position: sticky;
+   top: 0;
 }
 
 .search-bar {
@@ -46,19 +47,20 @@
    padding: 5px;
    width: 30%;
 }
+.sub-nav-1 {
+   box-shadow: 3px 6px 4px grey;
+
+   border: 2px solid rgb(255, 255, 255);
+   border-radius: 7px;
+   text-align: left;
+   padding: 5px;
+   width: 30%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
 select {
    width: 80%;
-}
-
-.title {
-   height: 100%;
-
-   font-size: xx-large;
-
-   color: rgb(34, 243, 255);
-   border: 4px solid white;
-   border-radius: 7px;
-   box-shadow: 3px 6px 10px white;
 }
 
 #title {
@@ -66,7 +68,7 @@ select {
    font-size: 4rem;
    display: flex;
    justify-content: space-around;
-   text-shadow: 4px 4px 4px white;
+   text-shadow: 6px 6px 15px white;
 
    border: 4px solid white;
    border-radius: 7px;
@@ -85,6 +87,11 @@ button {
    border-radius: 7px;
    margin: 2px;
 }
+#container-button-landing {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
 .button-landing {
    color: white;
    font-weight: bolder;
@@ -92,14 +99,14 @@ button {
    border: 1px solid white;
    border-radius: 7px;
    margin: 2px;
-   height: 100px;
-   width: 200px;
-   font-size: 3rem;
+   height: 70px;
+   width: 140px;
+   font-size: 2rem;
    background-color: transparent;
 }
 .button-landing:hover {
    background-color: white;
-   color: black;
+   color: rgb(34, 243, 255);
 }
 
 .button-page {
@@ -129,21 +136,42 @@ td {
 }
 
 .main {
+   font-family: "times new roman";
    display: flex;
    flex-direction: column;
 }
 #h1-error-page {
-   color: white;
+   font-weight: bolder;
+   font-size: 4rem;
+   display: flex;
+   justify-content: space-around;
+   text-shadow: 6px 6px 15px white;
+
+   border: 4px solid white;
+   border-radius: 7px;
+   box-shadow: 3px 6px 10px white;
+   color: rgb(241, 254, 2);
+
    font-size: 3rem;
 }
 #h1-form-page {
-   color: white;
+   font-weight: bolder;
+   font-size: 4rem;
+   display: flex;
+   justify-content: space-around;
+   text-shadow: 6px 6px 15px white;
+
+   border: 4px solid white;
+   border-radius: 7px;
+   box-shadow: 3px 6px 10px white;
+   color: rgb(241, 254, 2);
+
    font-size: 3rem;
 }
 .button-error {
    color: white;
    font-weight: bolder;
-   box-shadow: 2px 3px 3px white;
+   box-shadow: 0 2rem 1rem rgba(66, 255, 236, 0.4) inset;
    border: 3px solid white;
    border-radius: 7px;
    margin: 2px;
@@ -154,30 +182,59 @@ td {
 }
 .button-error:hover {
    background-color: white;
-   color: black;
+   color: rgb(0, 146, 154);
+   box-shadow: 0 0.75rem 1rem rgba(255, 255, 255, 0.4) inset;
    font-size: 2rem;
    border: 3px solid black;
    border-radius: 7px;
+   font-weight: bolder;
 }
 .button-form {
+   background-color: transparent;
+   box-shadow: 0 2rem 3rem rgba(255, 255, 255, 0.4) inset;
    color: white;
-   font-weight: bolder;
-   box-shadow: 2px 3px 3px white;
+   font-size: 2rem;
    border: 3px solid white;
    border-radius: 7px;
+   font-weight: bold;
+
    margin: 2px;
    height: 100px;
    width: 200px;
    font-size: 2rem;
-   background-color: transparent;
 }
 .button-form:hover {
-   background-color: white;
-   color: black;
-   font-size: 2rem;
-   border: 3px solid black;
+   color: rgb(34, 243, 255);
+   text-shadow: 2px 2px 4px white;
+   font-weight: bolder;
+   box-shadow: 0 1rem 1rem rgb(34, 243, 255) inset;
    border-radius: 7px;
+   border: 3px solid white;
+   background-color: transparent;
 }
 .header-form {
    height: 100px;
+}
+button {
+   color: white;
+   box-shadow: 0 0.75rem 1rem rgba(255, 255, 255, 0.4) inset;
+   text-shadow: 1px 1px 4px white;
+
+   border: 1px solid white;
+   border-radius: 7px;
+   margin: 2px;
+   height: 25px;
+   width: 100%;
+   font-size: 1rem;
+   background-color: transparent;
+}
+button:hover {
+   color: rgb(34, 243, 255);
+   text-shadow: 1px 1px 3px white;
+   box-shadow: 0 0.75rem 0.25rem rgba(66, 255, 236, 0.4) inset;
+
+   background-color: transparent;
+
+   border: 1px solid white;
+   border-radius: 7px;
 }

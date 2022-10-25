@@ -21,17 +21,20 @@ function SearchBar({ setCurrentPage }) {
    }
 
    return (
-      <div>
-         <input
-            type='text'
-            placeholder='Search Country'
-            value={name}
-            onChange={(e) => handleInputChange(e)}
-         />
-
-         <button onClick={(e) => handleSubmit(e)} type='submit'>
-            SEARCH
-         </button>
+      <div className='searchbar-div'>
+         <div>
+            <input
+               type='text'
+               placeholder='Search Country'
+               value={name}
+               onChange={(e) => handleInputChange(e)}
+            />
+         </div>
+         <div>
+            <button onClick={(e) => handleSubmit(e)} type='submit'>
+               SEARCH
+            </button>
+         </div>
       </div>
    );
 }

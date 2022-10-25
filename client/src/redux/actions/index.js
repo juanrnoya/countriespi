@@ -41,6 +41,13 @@ export function filterByContinent(payload) {
       payload,
    };
 }
+export function filterByActivity(payload) {
+   return {
+      type: "FILTER_ACTIVITY",
+      payload,
+   };
+}
+
 export function sortByAlp(payload) {
    return {
       type: "SORT_ALP",

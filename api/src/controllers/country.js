@@ -92,6 +92,23 @@ const getId = async (req, res) => {
    }
 };
 
+const getActivity = async (req, res) => {
+   try {
+      const allActivities = await Activity.findAll({
+         include: [
+            {
+               model: Country,
+               attributes: ["name"],
+               through: { attributes: [] },
+            },
+         ],
+      });
+      return res.status(200).send(allActivities);
+   } catch (error) {
+      return res.status(400).send("It doesnt work");
+   }
+};
+
 const postActivity = async (req, res) => {
    const { name, difficulty, duration, season, countries } = req.body;
    const newActivity = {
@@ -113,4 +130,4 @@ const postActivity = async (req, res) => {
       return res.status(400).send(error);
    }
 };
-module.exports = { getCountries, getId, postActivity };
+module.exports = { getCountries, getId, postActivity, getActivity };

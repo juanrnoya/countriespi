@@ -58,6 +58,10 @@ export default function Home() {
       dispatch(filterByContinent(e.target.value));
       setCurrentPage(1);
    }
+
+   function handleSortActivity(e) {
+      e.preventDefault(e);
+   }
    function handleSortAlp(e) {
       e.preventDefault(e);
       dispatch(sortByAlp(e.target.value));
@@ -69,9 +73,7 @@ export default function Home() {
          <div className='header'>
             <div className='title'>
                <div id='title'>
-                  <p id='title1'>WELCOME TO</p>
-
-                  <p id='title2'> COUNTRIES PI</p>
+                  <p id='title1'>WELCOME TO COUNTRIES PI</p>
                </div>
             </div>
          </div>
@@ -82,10 +84,10 @@ export default function Home() {
                <button onClick={(e) => handleClick(e)}>RELOAD</button>
             </div>
             <div className='sub-nav'>
-               <select>
+               <select onChange={(e) => handleSortActivity(e)}>
                   <option>By Activity</option>
-                  <option>Without Activities</option>
-                  <option>With Activities</option>
+                  <option value='Without Activities'>Without Activities</option>
+                  <option value='With Activities'>With Activities</option>
                </select>
                <br />
                <select onChange={(e) => handleSortAlp(e)}>
@@ -110,16 +112,17 @@ export default function Home() {
                   <option value='Antarctic'>Antarctic</option>
                   <option value='Africa'>Africa</option>
                </select>
-            </div>
-            <div className='sub-nav'>
+               <br />
+               <br />
                <Link to='/form'>
-                  <button name='newActivity'>New Activity</button>
+                  <button name='newActivity'>ADD ACTIVITY</button>
                </Link>
-               <br />
-               <br />
+            </div>
+            <div className='sub-nav-1'>
                <SearchBar setCurrentPage={setCurrentPage} />
             </div>
          </nav>
+
          <br />
          <div>
             {/* <Page

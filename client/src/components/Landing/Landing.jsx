@@ -18,14 +18,15 @@ function Landing() {
             <p id='title2'>COUNTRIES PI </p>
          </div>
          <br />
+
          <br />
-         <br />
-         <br />
-         <Link to='/home'>
-            <button name='enter' className='button-landing'>
-               GO ON!
-            </button>
-         </Link>
+         <div id='container-button-landing'>
+            <Link to='/home'>
+               <button name='enter' className='button-landing'>
+                  GO ON!
+               </button>
+            </Link>
+         </div>
       </div>
    );
 }

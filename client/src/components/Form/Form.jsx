@@ -30,7 +30,7 @@ const Form = () => {
          season: "",
       });
       alert("Activity Created Succesfully");
-      history.push("/");
+      history.push("/home");
    };
 
    const handleInputChange = (e) => {
@@ -141,6 +141,8 @@ const Form = () => {
                   </tr>
                </tbody>
             </table>
+            <br />
+            <br />
             <button name='Send' className='button-form' type='submit'>
                CREATE
             </button>
