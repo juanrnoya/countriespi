@@ -8,15 +8,17 @@
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between;
-   border-radius: 5px;
+   border-radius: 15px;
 }
 
 .card {
+   width: min-content;
+   box-shadow: 6px 15px 4px rgb(43, 43, 43);
+   padding: 30px 6px;
    color: white;
    border-radius: 15px;
    background-color: transparent;
    margin: 10px;
-   border: 2px solid white;
 }
 
 #link-card {
@@ -25,8 +27,7 @@
 }
 
 .card-image {
-   border-top-left-radius: 15px;
-   border-top-right-radius: 15px;
+   border-radius: 15px;
 }
 
 .nav-home {
@@ -44,7 +45,7 @@
 .sub-nav {
    box-shadow: 3px 6px 4px grey;
    border: 2px solid rgb(255, 255, 255);
-   border-radius: 7px;
+   border-radius: 15px;
    text-align: left;
    padding: 5px;
    width: 30%;
@@ -65,15 +66,8 @@ select {
 
    text-shadow: 6px 6px 15px white;
    border: 4px solid white;
-   border-radius: 7px;
+   border-radius: 15px;
    box-shadow: 3px 6px 10px white;
-}
-
-button {
-   box-shadow: 2px 3px 3px grey;
-   border: 1px solid grey;
-   border-radius: 7px;
-   margin: 2px;
 }
 
 #container-button-landing {
@@ -87,7 +81,7 @@ button {
    font-weight: bolder;
    box-shadow: 2px 3px 3px white;
    border: 1px solid white;
-   border-radius: 7px;
+   border-radius: 15px;
    margin: 2px;
    height: 70px;
    width: 140px;
@@ -101,16 +95,26 @@ button {
 }
 
 .button-page {
+   box-shadow: 0 1rem 0.5rem rgba(66, 255, 236, 0.4) inset;
+   background-color: transparent;
    text-align: center;
-   background-color: white;
+
    color: black;
-   font-size: 2rem;
-   height: 50px;
-   width: 50px;
-   box-shadow: 2px 3px 8px white;
-   border: 2px solid grey;
+   font-size: 1rem;
+   height: 30px;
+   width: 30px;
+
+   border: 2px solid black;
    border-radius: 7px;
    margin: 3px;
+}
+.button-page:hover {
+   color: rgb(34, 243, 255);
+   text-shadow: 1px 1px 3px white;
+   box-shadow: 0 0.75rem 0.25rem rgba(66, 255, 236, 0.4) inset;
+   background-color: transparent;
+   border: 1px solid white;
+   border-radius: 15px;
 }
 
 table {
@@ -140,7 +144,7 @@ td {
    justify-content: space-around;
    text-shadow: 6px 6px 15px white;
    border: 4px solid white;
-   border-radius: 7px;
+   border-radius: 15px;
    box-shadow: 3px 6px 10px white;
    color: rgb(241, 254, 2);
    font-size: 3rem;
@@ -158,7 +162,7 @@ td {
 
    text-shadow: 6px 6px 15px white;
    border: 4px solid white;
-   border-radius: 7px;
+   border-radius: 15px;
    box-shadow: 3px 6px 10px white;
    color: rgb(241, 254, 2);
 }
@@ -167,13 +171,13 @@ td {
    color: white;
    font-weight: bolder;
    box-shadow: 0 2rem 1rem rgba(66, 255, 236, 0.4) inset;
-   border: 3px solid white;
-   border-radius: 7px;
+   background-color: transparent;
+   border: 3px solid black;
+   border-radius: 15px;
    margin: 2px;
    height: 100px;
    width: 200px;
    font-size: 2rem;
-   background-color: transparent;
 }
 
 .button-error:hover {
@@ -182,17 +186,17 @@ td {
    box-shadow: 0 0.75rem 1rem rgba(255, 255, 255, 0.4) inset;
    font-size: 2rem;
    border: 3px solid black;
-   border-radius: 7px;
+   border-radius: 15px;
    font-weight: bolder;
 }
 
 .button-form {
    background-color: transparent;
-   box-shadow: 0 2rem 3rem rgba(255, 255, 255, 0.4) inset;
-   color: white;
+   box-shadow: 0 3rem 4rem rgba(66, 255, 236, 0.4) inset;
+   color: black;
    font-size: 2rem;
-   border: 3px solid white;
-   border-radius: 7px;
+   border: 3px solid black;
+   border-radius: 15px;
    font-weight: bold;
    margin: 2px;
    height: 100px;
@@ -204,30 +208,31 @@ td {
    color: rgb(34, 243, 255);
    text-shadow: 2px 2px 4px white;
    font-weight: bolder;
-   box-shadow: 0 1rem 1rem rgb(34, 243, 255) inset;
-   border-radius: 7px;
+   box-shadow: 0 1rem 1rem rgba(66, 255, 236, 0.4) inset;
+   border-radius: 15px;
    border: 3px solid white;
    background-color: transparent;
 }
 
 button {
-   color: white;
-   box-shadow: 0 0.75rem 1rem rgba(255, 255, 255, 0.4) inset;
+   color: black;
+   box-shadow: 0 0.8rem 1rem rgba(66, 255, 236, 0.4) inset;
    text-shadow: 1px 1px 4px white;
-   border: 1px solid white;
-   border-radius: 7px;
+   border: 1px solid black;
+   border-radius: 15px;
    margin: 2px;
    height: 25px;
    width: 100%;
    font-size: 1rem;
+   font-weight: bold;
    background-color: transparent;
 }
 
 button:hover {
-   color: rgb(34, 243, 255);
+   color: rgb(17, 218, 222);
    text-shadow: 1px 1px 3px white;
    box-shadow: 0 0.75rem 0.25rem rgba(66, 255, 236, 0.4) inset;
    background-color: transparent;
    border: 1px solid white;
-   border-radius: 7px;
+   border-radius: 15px;
 }

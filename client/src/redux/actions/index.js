@@ -12,6 +12,21 @@ export function getCountries() {
    };
 }
 
+export function getActivities() {
+   return async function (dispatch) {
+      let call = await axios("http://localhost:3001/activities");
+      return dispatch({
+         type: "FILTER_ACTIVITY",
+         payload: call.data,
+      });
+   };
+}
+export function filterByActivity(payload) {
+   return {
+      type: "FILTER_ACTIVITY",
+      payload,
+   };
+}
 export function getCountryByName(payload) {
    return async function (dispatch) {
       try {
@@ -38,12 +53,6 @@ export function sortByPopulation(payload) {
 export function filterByContinent(payload) {
    return {
       type: "FILTER_CONTINENT",
-      payload,
-   };
-}
-export function filterByActivity(payload) {
-   return {
-      type: "FILTER_ACTIVITY",
       payload,
    };
 }

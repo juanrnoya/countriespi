@@ -9,7 +9,13 @@ const getCountries = async (req, res) => {
    const { name } = req.query;
    if (!name) {
       try {
-         const allCountries = await Country.findAll(); //busca en base de datos por el metodo findAll(devuelve la info en un array)
+         const allCountries = await Country.findAll({
+            include: {
+               model: Activity,
+               attributes: ["name", "difficulty", "duration", "season"],
+               through: { attributes: [] },
+            },
+         }); //busca en base de datos por el metodo findAll(devuelve la info en un array)
 
          if (!allCountries.length) {
             //si está vacío

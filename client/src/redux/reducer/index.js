@@ -18,20 +18,34 @@ function rootReducer(state = initialState, action) {
          };
 
       case "FILTER_ACTIVITY":
-         const activity = state.activity;
-         const countriesFilterByActivity =
-            action.payload === "With Activities" ? allCountries : {};
+         const allCountries2 = state.allCountries;
+
+         if (action.payload === "With Activities") {
+            var CountriesFilterByActivity = allCountries2.filter(
+               (e) => e.activities.length
+            );
+         } else if (action.payload === "Without Activities") {
+            var CountriesFilterByActivity = allCountries2.filter(
+               (e) => !e.activities.length
+            );
+         } else {
+            var CountriesFilterByActivity = allCountries2;
+         }
+         return {
+            ...state,
+            country: CountriesFilterByActivity,
+         };
 
       case "FILTER_CONTINENT":
          const allCountries = state.allCountries;
-         const CountriesSortedByContinent =
+         const CountriesFilterByContinent =
             action.payload === "all"
                ? allCountries
                : allCountries.filter((e) => e.continents === action.payload);
 
          return {
             ...state,
-            country: CountriesSortedByContinent,
+            country: CountriesFilterByContinent,
          };
       case "GET_COUNTRY_BY_NAME":
          return {

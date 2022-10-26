@@ -10,6 +10,8 @@ import {
    sortByPopulation,
    filterByContinent,
    sortByAlp,
+   getActivities,
+   filterByActivity,
 } from "../../redux/actions";
 
 import Card from "../Card/Card";
@@ -18,9 +20,12 @@ import SearchBar from "../SearchBar/SearchBar";
 
 export default function Home() {
    const allCountry = useSelector((state) => state.country);
+   const allActivities = useSelector((state) => state.activity);
+
+   console.log(allActivities);
+   //console.log(allCountry);
 
    const [order, setOrder] = useState("");
-
    const [currentPage, setCurrentPage] = useState(1);
    const [countryPerPage, setCountryPerPage] = useState(10);
    const indexOfLastCountry = currentPage * countryPerPage; //20;
@@ -39,6 +44,7 @@ export default function Home() {
    const dispatch = useDispatch();
    useEffect(() => {
       dispatch(getCountries());
+      dispatch(getActivities());
    }, [dispatch]);
 
    const handleClick = (e) => {
@@ -59,9 +65,12 @@ export default function Home() {
       setCurrentPage(1);
    }
 
-   function handleSortActivity(e) {
+   function handleFilterByActivity(e) {
       e.preventDefault(e);
+      dispatch(filterByActivity(e.target.value));
+      setCurrentPage(1);
    }
+
    function handleSortAlp(e) {
       e.preventDefault(e);
       dispatch(sortByAlp(e.target.value));
@@ -77,7 +86,7 @@ export default function Home() {
                <button onClick={(e) => handleClick(e)}>RELOAD</button>
             </div>
             <div className='sub-nav'>
-               <select onChange={(e) => handleSortActivity(e)}>
+               <select onChange={(e) => handleFilterByActivity(e)}>
                   <option>By Activity</option>
                   <option value='Without Activities'>Without Activities</option>
                   <option value='With Activities'>With Activities</option>
@@ -118,11 +127,11 @@ export default function Home() {
 
          <br />
          <div>
-            {/* <Page
+            <Page
                countryPerPage={countryPerPage}
                allCountry={allCountry.length}
                paginated={paginated}
-            /> */}
+            />
          </div>
          <br />
          <div className='home-cards'>
@@ -142,13 +151,6 @@ export default function Home() {
             ) : (
                <div>Loading...</div>
             )}
-         </div>
-         <div>
-            <Page
-               countryPerPage={countryPerPage}
-               allCountry={allCountry.length}
-               paginated={paginated}
-            />
          </div>
       </div>
    );

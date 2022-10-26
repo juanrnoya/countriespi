@@ -1,9 +1,30 @@
 /** @format */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { newActivity } from "../../redux/actions";
+import { newActivity, getCountries } from "../../redux/actions";
+
 import Image from "./countries.png";
+
+// export function validate(form) {
+//    let errors = {};
+//    if (
+//       !form.countries ||
+//       !form.name ||
+//       !form.difficulty ||
+//       !form.duration ||
+//       !form.season
+//    ) {
+//       errors.name = "error";
+
+//       // } else if (!/\S+@\S+\.\S+/.test(form.username)) {
+//       //    errors.name = "Username is invalid";
+//       // }
+//    } else {
+//       console.log("formulario no vacio");
+//    }
+//    return errors;
+// }
 
 const Form = () => {
    const [formValues, setFormValues] = useState({
@@ -17,28 +38,37 @@ const Form = () => {
    const dispatch = useDispatch();
    const history = useHistory();
    const allCountry = useSelector((state) => state.country); /**idea orderer*/
+   const [errors, setErrors] = useState({});
+   useEffect(() => {
+      dispatch(getCountries());
+   }, [dispatch]);
 
    const onSubmit = (e) => {
-      e.preventDefault(e);
-      dispatch(newActivity(formValues));
+      if (Object.entries(errors).length === 0) {
+         e.preventDefault(e);
+         dispatch(newActivity(formValues));
 
-      setFormValues({
-         countries: "",
-         name: "",
-         difficulty: "",
-         duration: "",
-         season: "",
-      });
-      alert("Activity Created Succesfully");
-      history.push("/home");
+         setFormValues({
+            countries: "",
+            name: "",
+            difficulty: "",
+            duration: "",
+            season: "",
+         });
+         alert("Activity Created Succesfully");
+         history.push("/home");
+      } else {
+         alert("hay campos vacios");
+      }
    };
 
    const handleInputChange = (e) => {
-      const changedFormValues = {
+      setFormValues({
          ...formValues,
          [e.target.name]: e.target.value,
-      };
-      setFormValues(changedFormValues);
+      });
+
+      // validate(formValues);
    };
 
    return (
@@ -56,30 +86,18 @@ const Form = () => {
             </div>
 
             <table align='center'>
-               <caption>
-                  {/* <marquee
-                     direction='down'
-                     width='450'
-                     height='150'
-                     behavior='alternate'
-                     bgcolor='lightblue'>
-                     <marquee behavior='alternate'>
-                        <h1>Add New Activity</h1>{" "}
-                     </marquee>
-                  </marquee> */}
-               </caption>
                <tbody>
                   <tr>
                      <td>
                         <label>Country Name: </label>
                      </td>
                      <td>
-                        <select onChange={handleInputChange}>
+                        <select
+                           required
+                           name='countries'
+                           onChange={handleInputChange}>
                            {allCountry.map((e) => (
-                              <option
-                                 value={e.name}
-                                 name='countries'
-                                 key={e.id}>
+                              <option type='text' value={e.name} key={e.id}>
                                  {e.name}
                               </option>
                            ))}
@@ -92,6 +110,7 @@ const Form = () => {
                      </td>
                      <td>
                         <input
+                           required
                            value={formValues.name}
                            onChange={handleInputChange}
                            name='name'
@@ -106,12 +125,13 @@ const Form = () => {
                      </td>
                      <td>
                         <input
+                           required
                            value={formValues.difficulty}
                            onChange={handleInputChange}
                            name='difficulty'
                            size='25'
                            type='text'
-                           placeholder='Level of difficulty from 1-5'></input>
+                           placeholder='Difficulty from 1-5'></input>
                      </td>
                   </tr>
                   <tr>
@@ -120,6 +140,7 @@ const Form = () => {
                      </td>
                      <td>
                         <input
+                           required
                            value={formValues.duration}
                            onChange={handleInputChange}
                            name='duration'
@@ -134,6 +155,7 @@ const Form = () => {
                      </td>
                      <td>
                         <input
+                           required
                            value={formValues.season}
                            onChange={handleInputChange}
                            name='season'
