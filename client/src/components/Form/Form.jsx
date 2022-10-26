@@ -10,8 +10,6 @@ export function validate(form) {
    let errors = {};
    if (!form.name) {
       errors.name = "Name is required";
-   } else if (!/\S+@\S+\.\S+/.test(form.username)) {
-      errors.name = "Username is invalid";
    }
    if (!form.difficulty) {
       errors.difficulty = "Choose a difficulty over 0";
@@ -37,7 +35,7 @@ const Form = () => {
       duration: 0,
       season: "",
    });
-
+   console.log(formValues);
    const dispatch = useDispatch();
    const history = useHistory();
    const allCountry = useSelector((state) => state.country); /**idea orderer*/
@@ -51,14 +49,15 @@ const Form = () => {
       e.preventDefault(e);
 
       setErrors(validate(formValues));
+
       if (Object.keys(errors).length === 0) {
          dispatch(newActivity(formValues));
 
          setFormValues({
             countries: "",
             name: "",
-            difficulty: "",
-            duration: "",
+            difficulty: 0,
+            duration: 0,
             season: "",
          });
          alert("Activity Created Succesfully");
@@ -73,8 +72,6 @@ const Form = () => {
          ...formValues,
          [e.target.name]: e.target.value,
       });
-
-      setErrors(validate(formValues));
    };
 
    return (
@@ -102,7 +99,7 @@ const Form = () => {
                            required
                            name='countries'
                            onChange={(e) => handleInputChange(e)}>
-                           <option value={""}>---</option>
+                           <option value={"All"}>---</option>
                            {allCountry.map((e) => (
                               <option type='text' value={e.name} key={e.id}>
                                  {e.name}
@@ -165,7 +162,9 @@ const Form = () => {
                         <label>Season: </label>
                      </td>
                      <td>
-                        <select name='season' onChange={handleInputChange}>
+                        <select
+                           name='season'
+                           onChange={(e) => handleInputChange(e)}>
                            <option value={""}>---</option>
                            <option type='text' value='Summer'>
                               Summer
