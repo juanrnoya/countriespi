@@ -117,6 +117,8 @@ const getActivity = async (req, res) => {
 
 const postActivity = async (req, res) => {
    const { name, difficulty, duration, season, countries } = req.body;
+   if (!countries)
+      return res.status(404).send({ error: "Please insert a country" });
    const newActivity = {
       name,
       difficulty,

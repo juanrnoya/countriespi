@@ -6,32 +6,35 @@ import { newActivity, getCountries } from "../../redux/actions";
 
 import Image from "./countries.png";
 
-// export function validate(form) {
-//    let errors = {};
-//    if (
-//       !form.countries ||
-//       !form.name ||
-//       !form.difficulty ||
-//       !form.duration ||
-//       !form.season
-//    ) {
-//       errors.name = "error";
+export function validate(form) {
+   let errors = {};
+   if (!form.name) {
+      errors.name = "Name is required";
+   } else if (!/\S+@\S+\.\S+/.test(form.username)) {
+      errors.name = "Username is invalid";
+   }
+   if (!form.difficulty) {
+      errors.difficulty = "Choose a difficulty over 0";
+   }
+   if (!form.duration) {
+      errors.duration = "Choose a duration over 0";
+   }
+   if (!form.countries) {
+      errors.countries = "Choose a country";
+   }
+   if (!form.season) {
+      errors.season = "Choose a season";
+   }
 
-//       // } else if (!/\S+@\S+\.\S+/.test(form.username)) {
-//       //    errors.name = "Username is invalid";
-//       // }
-//    } else {
-//       console.log("formulario no vacio");
-//    }
-//    return errors;
-// }
+   return errors;
+}
 
 const Form = () => {
    const [formValues, setFormValues] = useState({
       countries: "",
       name: "",
-      difficulty: "",
-      duration: "",
+      difficulty: 0,
+      duration: 0,
       season: "",
    });
 
@@ -39,13 +42,16 @@ const Form = () => {
    const history = useHistory();
    const allCountry = useSelector((state) => state.country); /**idea orderer*/
    const [errors, setErrors] = useState({});
+
    useEffect(() => {
       dispatch(getCountries());
    }, [dispatch]);
 
    const onSubmit = (e) => {
-      if (Object.entries(errors).length === 0) {
-         e.preventDefault(e);
+      e.preventDefault(e);
+
+      setErrors(validate(formValues));
+      if (Object.keys(errors).length === 0) {
          dispatch(newActivity(formValues));
 
          setFormValues({
@@ -58,7 +64,7 @@ const Form = () => {
          alert("Activity Created Succesfully");
          history.push("/home");
       } else {
-         alert("hay campos vacios");
+         alert("There are empty fields");
       }
    };
 
@@ -68,7 +74,7 @@ const Form = () => {
          [e.target.name]: e.target.value,
       });
 
-      // validate(formValues);
+      setErrors(validate(formValues));
    };
 
    return (
@@ -95,7 +101,8 @@ const Form = () => {
                         <select
                            required
                            name='countries'
-                           onChange={handleInputChange}>
+                           onChange={(e) => handleInputChange(e)}>
+                           <option value={""}>---</option>
                            {allCountry.map((e) => (
                               <option type='text' value={e.name} key={e.id}>
                                  {e.name}
@@ -121,7 +128,7 @@ const Form = () => {
                   </tr>
                   <tr>
                      <td>
-                        <label>Difficulty: </label>
+                        <label>Difficulty 1-5: </label>
                      </td>
                      <td>
                         <input
@@ -130,13 +137,15 @@ const Form = () => {
                            onChange={handleInputChange}
                            name='difficulty'
                            size='25'
-                           type='text'
-                           placeholder='Difficulty from 1-5'></input>
+                           type='range'
+                           max={5}
+                           min={1}></input>
+                        <label>{" " + formValues.difficulty}</label>
                      </td>
                   </tr>
                   <tr>
                      <td>
-                        <label>Duration: </label>
+                        <label>Duration 1-24: </label>
                      </td>
                      <td>
                         <input
@@ -145,8 +154,10 @@ const Form = () => {
                            onChange={handleInputChange}
                            name='duration'
                            size='25'
-                           type='text'
-                           placeholder='How long it takes'></input>
+                           type='range'
+                           max={24}
+                           min={1}></input>
+                        <label>{" " + formValues.duration}</label>
                      </td>
                   </tr>
                   <tr>
@@ -154,14 +165,21 @@ const Form = () => {
                         <label>Season: </label>
                      </td>
                      <td>
-                        <input
-                           required
-                           value={formValues.season}
-                           onChange={handleInputChange}
-                           name='season'
-                           size='25'
-                           type='text'
-                           placeholder='Reasonable season to enjoy'></input>
+                        <select name='season' onChange={handleInputChange}>
+                           <option value={""}>---</option>
+                           <option type='text' value='Summer'>
+                              Summer
+                           </option>
+                           <option type='text' value='Spring'>
+                              Spring
+                           </option>
+                           <option type='text' value='Winter'>
+                              Winter
+                           </option>
+                           <option type='text' value='Autumn'>
+                              Autumn
+                           </option>
+                        </select>
                      </td>
                   </tr>
                </tbody>
