@@ -61,6 +61,8 @@
 
 select {
    width: 80%;
+   font-size: 18px;
+   font-weight: bold;
 }
 
 #title-home {
@@ -83,6 +85,7 @@ select {
 .button-landing {
    color: white;
    font-weight: bolder;
+
    box-shadow: 2px 3px 3px white;
    border: 1px solid white;
    border-radius: 15px;
@@ -231,7 +234,9 @@ button {
    font-weight: bold;
    background-color: transparent;
 }
-
+#input-search {
+   font-size: 18px;
+}
 button:hover {
    color: rgb(17, 218, 222);
    text-shadow: 1px 1px 3px white;
@@ -269,4 +274,14 @@ button:hover {
    color: white;
    border-radius: 15px;
    background-color: transparent;
+}
+.sub-nav-1 {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+}
+.sub-nav2 {
+   display: flex;
+   flex-direction: column;
+   justify-content: end;
 }

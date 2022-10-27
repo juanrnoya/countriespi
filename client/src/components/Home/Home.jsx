@@ -80,9 +80,13 @@ export default function Home() {
    return (
       <div className='home' style={{ backgroundImage: `url(${Image})` }}>
          <div id='title-home'>COUNTRIES APP</div>
+
          <br />
          <nav className='nav-home' text-align='left'>
-            <div className='sub-nav'>
+            <div className='sub-nav-1'>
+               <Link to='/'>
+                  <button name='volver'>Go Landing!</button>
+               </Link>
                <button onClick={(e) => handleClick(e)}>RELOAD</button>
             </div>
             <div className='sub-nav'>
@@ -91,19 +95,19 @@ export default function Home() {
                   <option value='Without Activities'>Without Activities</option>
                   <option value='With Activities'>With Activities</option>
                </select>
-
+               <br />
                <select onChange={(e) => handleSortAlp(e)}>
                   <option>Countries Alphabetically</option>
                   <option value='From A-Z'>From A-Z</option>
                   <option value='From Z-A'>From Z-A</option>
                </select>
-
+               <br />
                <select onChange={(e) => handleSort(e)}>
                   <option>By Population</option>
                   <option value='max'>Max to Min</option>
                   <option value='min'>Min to Max</option>
                </select>
-
+               <br />
                <select onChange={(e) => handleFilterContinent(e)}>
                   <option value='All Continents'>All Continents</option>
                   <option value='Asia'>Asia</option>
@@ -120,7 +124,7 @@ export default function Home() {
                   <button name='newActivity'>ADD ACTIVITY</button>
                </Link>
             </div>
-            <div className='sub-nav'>
+            <div className='sub-nav2'>
                <SearchBar setCurrentPage={setCurrentPage} />
             </div>
          </nav>

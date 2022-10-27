@@ -19,7 +19,7 @@ function Landing() {
          <div id='container-button-landing'>
             <Link to='/home'>
                <button name='enter' className='button-landing'>
-                  GO ON!
+                  GO HOME!
                </button>
             </Link>
          </div>

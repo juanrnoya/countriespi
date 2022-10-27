@@ -24,6 +24,7 @@ function SearchBar({ setCurrentPage }) {
       <div className='searchbar-div'>
          <div>
             <input
+               id='input-search'
                type='text'
                placeholder='Search Country'
                value={name}
