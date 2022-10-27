@@ -7,6 +7,7 @@ const initialState = {
    allCountries: [],
    alphabetically: [],
    activity: [],
+   detail: {},
 };
 function rootReducer(state = initialState, action) {
    switch (action.type) {
@@ -15,6 +16,11 @@ function rootReducer(state = initialState, action) {
             ...state,
             country: action.payload,
             allCountries: action.payload,
+         };
+      case "GET_COUNTRY_DETAIL":
+         return {
+            ...state,
+            detail: action.payload,
          };
 
       case "FILTER_ACTIVITY":

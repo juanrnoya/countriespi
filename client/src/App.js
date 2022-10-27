@@ -6,6 +6,7 @@ import Home from "./components/Home/Home";
 import Form from "./components/Form/Form";
 import Error from "./components/Error/Error";
 import Landing from "./components/Landing/Landing";
+import Detail from "./components/Detail/Detail";
 
 function App() {
    return (
@@ -15,6 +16,7 @@ function App() {
                <Route exact path='/' component={Landing} />
                <Route exact path='/home' component={Home} />
                <Route exact path='/form' component={Form} />
+               <Route path='/home/:id' component={Detail} />
                <Route path='*' component={Error} />
             </Switch>
          </div>

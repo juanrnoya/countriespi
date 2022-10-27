@@ -3,7 +3,11 @@
    background-attachment: fixed;
    font-family: "times new roman";
 }
-
+.detail {
+   background-attachment: fixed;
+   font-family: "times new roman";
+   color: white;
+}
 .home-cards {
    display: flex;
    flex-wrap: wrap;
@@ -235,4 +239,34 @@ button:hover {
    background-color: transparent;
    border: 1px solid white;
    border-radius: 15px;
+}
+.card-detail {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.card-sub-detail {
+   width: min-content;
+   box-shadow: 6px 15px 4px rgb(43, 43, 43);
+   padding: 30px 6px;
+   color: white;
+   border-radius: 15px;
+   background-color: transparent;
+   margin: 10px;
+}
+#detail-card-div {
+   border: 3px solid white;
+   border-radius: 15px;
+}
+.container-activities {
+   display: flex;
+   justify-content: center;
+   justify-content: space-around;
+}
+.activities {
+   box-shadow: 0 2rem 6rem rgba(66, 255, 236, 0.4) inset;
+
+   color: white;
+   border-radius: 15px;
+   background-color: transparent;
 }

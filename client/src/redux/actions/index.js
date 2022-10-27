@@ -21,6 +21,17 @@ export function getActivities() {
       });
    };
 }
+
+export function getCountryDetail(id) {
+   return async function (dispatch) {
+      let call = await axios(`http://localhost:3001/countries/${id}`);
+      return dispatch({
+         type: "GET_COUNTRY_DETAIL",
+         payload: call.data,
+      });
+   };
+}
+
 export function filterByActivity(payload) {
    return {
       type: "FILTER_ACTIVITY",
