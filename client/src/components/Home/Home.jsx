@@ -10,7 +10,7 @@ import {
    sortByPopulation,
    filterByContinent,
    sortByAlp,
-   getActivities,
+   // getActivities,
    filterByActivity,
 } from "../../redux/actions";
 
@@ -21,9 +21,6 @@ import SearchBar from "../SearchBar/SearchBar";
 export default function Home() {
    const allCountry = useSelector((state) => state.country);
    const allActivities = useSelector((state) => state.activity);
-
-   console.log(allActivities);
-   //console.log(allCountry);
 
    const [order, setOrder] = useState("");
    const [currentPage, setCurrentPage] = useState(1);
@@ -42,9 +39,10 @@ export default function Home() {
       currentCountry = allCountry.slice(0, 9);
    }
    const dispatch = useDispatch();
+
    useEffect(() => {
       dispatch(getCountries());
-      dispatch(getActivities());
+      // dispatch(getActivities());
    }, [dispatch]);
 
    const handleClick = (e) => {

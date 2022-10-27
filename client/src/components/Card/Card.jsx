@@ -15,7 +15,7 @@ export default function Card({ name, img, continent, id }) {
          />
          <h2>{name}</h2>
          <h3>{continent}</h3>
-         <Link id='link-card' to={`/home/${id}`}>
+             <Link id='link-card' to={`/home/${id}`}>
             {id}
          </Link>
       </div>

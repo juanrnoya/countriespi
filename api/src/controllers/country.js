@@ -28,8 +28,8 @@ const getCountries = async (req, res) => {
                   name: e.name.common,
                   flags: e.flags[1],
                   continents: e.continents[0],
-                  capital: e.capital ? e.capital[0] : "no existe",
-                  subregion: e.subregion ? e.subregion : "no existe",
+                  capital: e.capital ? e.capital[0] : "Does not exist",
+                  subregion: e.subregion ? e.subregion : "Does not exist",
                   area: e.area,
                   population: e.population,
                };

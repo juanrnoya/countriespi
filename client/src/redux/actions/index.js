@@ -12,6 +12,13 @@ export function getCountries() {
    };
 }
 
+export function filterByActivity(payload) {
+   return {
+      type: "FILTER_ACTIVITY",
+      payload,
+   };
+}
+
 export function getActivities() {
    return async function (dispatch) {
       let call = await axios("http://localhost:3001/activities");
@@ -32,12 +39,6 @@ export function getCountryDetail(id) {
    };
 }
 
-export function filterByActivity(payload) {
-   return {
-      type: "FILTER_ACTIVITY",
-      payload,
-   };
-}
 export function getCountryByName(payload) {
    return async function (dispatch) {
       try {

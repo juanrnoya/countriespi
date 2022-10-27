@@ -11,10 +11,12 @@ export function validate(form) {
    if (!form.name) {
       errors.name = "Name is required";
    }
-   if (!form.difficulty) {
+   if (!form.difficulty || form.difficulty < 1 || form.difficulty > 6) {
+      alert("Difficulty must be from 1 to 5");
       errors.difficulty = "Choose a difficulty over 0";
    }
-   if (!form.duration) {
+   if (!form.duration || form.duration < 1 || form.duration > 24) {
+      alert("Duration must be from 1 to 24");
       errors.duration = "Choose a duration over 0";
    }
    if (!form.countries) {
@@ -31,8 +33,8 @@ const Form = () => {
    const [formValues, setFormValues] = useState({
       countries: "",
       name: "",
-      difficulty: 0,
-      duration: 0,
+      difficulty: "1",
+      duration: "1",
       season: "",
    });
    console.log(formValues);
@@ -48,22 +50,20 @@ const Form = () => {
    const onSubmit = (e) => {
       e.preventDefault(e);
 
-      setErrors(validate(formValues));
-
       if (Object.keys(errors).length === 0) {
          dispatch(newActivity(formValues));
 
          setFormValues({
             countries: "",
             name: "",
-            difficulty: 0,
-            duration: 0,
+            difficulty: "",
+            duration: "",
             season: "",
          });
          alert("Activity Created Succesfully");
          history.push("/home");
       } else {
-         alert("There are empty fields");
+         alert("Errors in page");
       }
    };
 
@@ -72,6 +72,12 @@ const Form = () => {
          ...formValues,
          [e.target.name]: e.target.value,
       });
+      setErrors(
+         validate({
+            ...formValues,
+            [e.target.name]: e.target.value,
+         })
+      );
    };
 
    return (
@@ -96,10 +102,11 @@ const Form = () => {
                      </td>
                      <td>
                         <select
+                           value={formValues.countries}
                            required
                            name='countries'
                            onChange={(e) => handleInputChange(e)}>
-                           <option value={"All"}>---</option>
+                           <option value={""}></option>
                            {allCountry.map((e) => (
                               <option type='text' value={e.name} key={e.id}>
                                  {e.name}
@@ -133,10 +140,7 @@ const Form = () => {
                            value={formValues.difficulty}
                            onChange={handleInputChange}
                            name='difficulty'
-                           size='25'
-                           type='range'
-                           max={5}
-                           min={1}></input>
+                           size='25'></input>
                         <label>{" " + formValues.difficulty}</label>
                      </td>
                   </tr>
@@ -150,10 +154,7 @@ const Form = () => {
                            value={formValues.duration}
                            onChange={handleInputChange}
                            name='duration'
-                           size='25'
-                           type='range'
-                           max={24}
-                           min={1}></input>
+                           size='25'></input>
                         <label>{" " + formValues.duration}</label>
                      </td>
                   </tr>
@@ -163,19 +164,20 @@ const Form = () => {
                      </td>
                      <td>
                         <select
+                           value={formValues.season}
                            name='season'
                            onChange={(e) => handleInputChange(e)}>
-                           <option value={""}>---</option>
-                           <option type='text' value='Summer'>
+                           <option value={""}></option>
+                           <option type='text' value={formValues.summer}>
                               Summer
                            </option>
-                           <option type='text' value='Spring'>
+                           <option type='text' value={formValues.spring}>
                               Spring
                            </option>
-                           <option type='text' value='Winter'>
+                           <option type='text' value={formValues.winter}>
                               Winter
                            </option>
-                           <option type='text' value='Autumn'>
+                           <option type='text' value={formValues.autumn}>
                               Autumn
                            </option>
                         </select>
