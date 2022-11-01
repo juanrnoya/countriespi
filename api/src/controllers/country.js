@@ -34,7 +34,6 @@ const getCountries = async (req, res) => {
                   population: e.population,
                };
             });
-
             apiInfo.forEach((z) => {
                Country.findOrCreate({
                   where: {
@@ -49,7 +48,6 @@ const getCountries = async (req, res) => {
                   },
                });
             });
-
             return res.status(200).send(apiInfo);
          } else {
             return res.status(200).send(allCountries);

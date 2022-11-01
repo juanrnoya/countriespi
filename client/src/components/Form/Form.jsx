@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { newActivity, getCountries } from "../../redux/actions";
+import FormCard from "../FormCard/FormCard";
 
 import Image from "./countries.png";
 
@@ -10,8 +11,10 @@ const Form = () => {
    const dispatch = useDispatch();
    const history = useHistory();
 
+   const allCountry = useSelector((state) => state.country); /**idea orderer*/
+
    const [formValues, setFormValues] = useState({
-      countries: "",
+      countries: [],
       name: "",
       difficulty: "",
       duration: "",
@@ -19,17 +22,16 @@ const Form = () => {
    });
 
    const [errors, setErrors] = useState({});
-   const allCountry = useSelector((state) => state.country); /**idea orderer*/
 
    function validate(form) {
       let error = {};
       if (!form.countries) {
          error.countries = "Choose a country";
       }
-      if (!/w/.test(form.name)) {
+      if (/w/.test(form.name)) {
          error.name = "Activity name must be a string";
       }
-      if (!form.difficulty || form.difficulty < 1 || form.difficulty > 6) {
+      if (!form.difficulty || form.difficulty < 1 || form.difficulty > 5) {
          // alert("Difficulty must be from 1 to 5");
          error.difficulty = "Choose a difficulty from 1 to 5";
       }
@@ -49,7 +51,8 @@ const Form = () => {
       dispatch(getCountries());
    }, [dispatch]);
 
-   // useEffect(() => console.log(), []);
+   useEffect(() => console.log(), []);
+   console.log(formValues);
 
    // console.group();
    // console.table("FORMVALUES", formValues);
@@ -66,7 +69,7 @@ const Form = () => {
          dispatch(newActivity(formValues));
 
          setFormValues({
-            countries: "",
+            countries: [],
             name: "",
             difficulty: "",
             duration: "",
@@ -79,6 +82,15 @@ const Form = () => {
          alert(JSON.stringify("Please correct: " + e));
       }
    };
+
+   function handleSelect(e) {
+      if (!formValues.countries.includes(e.target.value)) {
+         setFormValues({
+            ...formValues,
+            countries: [...formValues.countries, e.target.value],
+         });
+      }
+   }
 
    const handleInputChange = (e) => {
       setErrors(
@@ -126,9 +138,8 @@ const Form = () => {
                      <td>
                         <select
                            value={formValues.countries}
-                           required
                            name='countries'
-                           onChange={(e) => handleInputChange(e)}>
+                           onChange={(e) => handleSelect(e)}>
                            <option value={""}></option>
                            {allCountry.map((e) => (
                               <option type='text' value={e.name} key={e.id}>
@@ -216,6 +227,20 @@ const Form = () => {
                </tbody>
             </table>
             <br />
+            <div className='form-card-container'>
+               {formValues.countries.length ? (
+                  formValues.countries.map((e) => {
+                     return (
+                        <div className='formcard' key={Math.random()}>
+                           <FormCard name={e} />
+                        </div>
+                     );
+                  })
+               ) : (
+                  <div>Waiting for countries...</div>
+               )}
+            </div>
+
             <br />
             <button name='Send' className='button-form' type='submit'>
                CREATE
