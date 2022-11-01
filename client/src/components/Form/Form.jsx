@@ -1,56 +1,68 @@
 /** @format */
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { newActivity, getCountries } from "../../redux/actions";
 
 import Image from "./countries.png";
 
-export function validate(form) {
-   let errors = {};
-   if (!form.name) {
-      errors.name = "Name is required";
-   }
-   if (!form.difficulty || form.difficulty < 1 || form.difficulty > 6) {
-      alert("Difficulty must be from 1 to 5");
-      errors.difficulty = "Choose a difficulty over 0";
-   }
-   if (!form.duration || form.duration < 1 || form.duration > 24) {
-      alert("Duration must be from 1 to 24");
-      errors.duration = "Choose a duration over 0";
-   }
-   if (!form.countries) {
-      errors.countries = "Choose a country";
-   }
-   if (!form.season) {
-      errors.season = "Choose a season";
-   }
-
-   return errors;
-}
-
 const Form = () => {
+   const dispatch = useDispatch();
+   const history = useHistory();
+
    const [formValues, setFormValues] = useState({
       countries: "",
       name: "",
-      difficulty: "1",
-      duration: "1",
+      difficulty: "",
+      duration: "",
       season: "",
    });
-   console.log(formValues);
-   const dispatch = useDispatch();
-   const history = useHistory();
-   const allCountry = useSelector((state) => state.country); /**idea orderer*/
+
    const [errors, setErrors] = useState({});
+   const allCountry = useSelector((state) => state.country); /**idea orderer*/
+
+   function validate(form) {
+      let error = {};
+      if (!form.countries) {
+         error.countries = "Choose a country";
+      }
+      if (!/w/.test(form.name)) {
+         error.name = "Activity name must be a string";
+      }
+      if (!form.difficulty || form.difficulty < 1 || form.difficulty > 6) {
+         // alert("Difficulty must be from 1 to 5");
+         error.difficulty = "Choose a difficulty from 1 to 5";
+      }
+      if (!form.duration || form.duration < 1 || form.duration > 24) {
+         // alert("Duration must be from 1 to 24");
+         error.duration = "Choose a duration from 1 to 24";
+      }
+
+      if (!form.season) {
+         error.season = "Choose a season";
+      }
+
+      return error;
+   }
 
    useEffect(() => {
       dispatch(getCountries());
    }, [dispatch]);
 
+   // useEffect(() => console.log(), []);
+
+   // console.group();
+   // console.table("FORMVALUES", formValues);
+   // console.groupEnd();
+
+   // console.group();
+   // console.log("ERRORS", errors);
+   // console.groupEnd();
+
    const onSubmit = (e) => {
       e.preventDefault(e);
 
-      if (Object.keys(errors).length === 0) {
+      if (Object.entries(errors).length === 0) {
          dispatch(newActivity(formValues));
 
          setFormValues({
@@ -63,21 +75,23 @@ const Form = () => {
          alert("Activity Created Succesfully");
          history.push("/home");
       } else {
-         alert("Errors in page");
+         let e = Object.values(errors);
+         alert(JSON.stringify("Please correct: " + e));
       }
    };
 
    const handleInputChange = (e) => {
-      setFormValues({
-         ...formValues,
-         [e.target.name]: e.target.value,
-      });
       setErrors(
          validate({
             ...formValues,
             [e.target.name]: e.target.value,
          })
       );
+
+      setFormValues({
+         ...formValues,
+         [e.target.name]: e.target.value,
+      });
    };
 
    return (
@@ -89,6 +103,15 @@ const Form = () => {
             height: "1000px",
          }}>
          <div id='title-home'>COUNTRIES APP</div>
+         <br />
+
+         <div id='button-detail'>
+            <Link to='/home'>
+               <button name='volver' className='button-detail'>
+                  Back home!
+               </button>
+            </Link>
+         </div>
          <form onSubmit={onSubmit}>
             <div id='container-h2-form-page'>
                <p id='h2-form-page'> ADD NEW ACTIVITY</p>
@@ -140,7 +163,10 @@ const Form = () => {
                            value={formValues.difficulty}
                            onChange={handleInputChange}
                            name='difficulty'
-                           size='25'></input>
+                           size='25'
+                           type='range'
+                           max='5'
+                           min='1'></input>
                         <label>{" " + formValues.difficulty}</label>
                      </td>
                   </tr>
@@ -154,6 +180,9 @@ const Form = () => {
                            value={formValues.duration}
                            onChange={handleInputChange}
                            name='duration'
+                           type='range'
+                           max='24'
+                           min='1'
                            size='25'></input>
                         <label>{" " + formValues.duration}</label>
                      </td>
@@ -164,6 +193,7 @@ const Form = () => {
                      </td>
                      <td>
                         <select
+                           required
                            value={formValues.season}
                            name='season'
                            onChange={(e) => handleInputChange(e)}>

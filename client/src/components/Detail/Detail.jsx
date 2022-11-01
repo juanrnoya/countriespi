@@ -23,13 +23,16 @@ function Detail() {
             height: "100%",
          }}>
          <div>
-            <Link to='/home'>
-               <button name='volver' className='button-detail'>
-                  Back home!
-               </button>
-            </Link>
+            <br />
             <p id='detail-page-title'>COUNTRY DETAIL</p>
             <br />
+            <div id='button-detail'>
+               <Link to='/home'>
+                  <button name='volver' className='button-detail'>
+                     Back home!
+                  </button>
+               </Link>
+            </div>
             <div className='card-detail'>
                <div className='card-sub-detail'>
                   <img
