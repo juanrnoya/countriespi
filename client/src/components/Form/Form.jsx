@@ -21,21 +21,42 @@ const Form = () => {
       season: "",
    });
 
-   const [errors, setErrors] = useState({});
+   const [errors, setErrors] = useState({
+      countries: ["Choose a country"],
+      name: "Activity name must be a string",
+      difficulty: "Choose a difficulty from 1 to 5",
+      duration: "Choose a duration from 1 to 24",
+      season: "Choose a season",
+   });
+
+   useEffect(() => {
+      dispatch(getCountries());
+   }, [dispatch]);
+
+   useEffect(() => console.log(), []);
+
+   console.group();
+   console.table("FORMVALUES", formValues);
+   console.groupEnd();
+
+   console.group();
+   console.log("ERRORS", errors);
+   console.groupEnd();
 
    function validate(form) {
+      console.log("form" + form.name);
       let error = {};
-      if (!form.countries) {
+      if (form.countries.length === 0) {
          error.countries = "Choose a country";
       }
-      if (/w/.test(form.name)) {
+      if (!form.name) {
          error.name = "Activity name must be a string";
       }
-      if (!form.difficulty || form.difficulty < 1 || form.difficulty > 5) {
+      if (!form.difficulty) {
          // alert("Difficulty must be from 1 to 5");
          error.difficulty = "Choose a difficulty from 1 to 5";
       }
-      if (!form.duration || form.duration < 1 || form.duration > 24) {
+      if (!form.duration) {
          // alert("Duration must be from 1 to 24");
          error.duration = "Choose a duration from 1 to 24";
       }
@@ -47,25 +68,10 @@ const Form = () => {
       return error;
    }
 
-   useEffect(() => {
-      dispatch(getCountries());
-   }, [dispatch]);
-
-   useEffect(() => console.log(), []);
-   console.log(formValues);
-
-   // console.group();
-   // console.table("FORMVALUES", formValues);
-   // console.groupEnd();
-
-   // console.group();
-   // console.log("ERRORS", errors);
-   // console.groupEnd();
-
    const onSubmit = (e) => {
       e.preventDefault(e);
 
-      if (Object.entries(errors).length === 0) {
+      if (!Object.entries(errors).length) {
          dispatch(newActivity(formValues));
 
          setFormValues({
@@ -75,7 +81,7 @@ const Form = () => {
             duration: "",
             season: "",
          });
-         alert("Activity Created Succesfully");
+         alert("Activity Created Succesfully in: " + formValues.countries);
          history.push("/home");
       } else {
          let e = Object.values(errors);
@@ -89,7 +95,30 @@ const Form = () => {
             ...formValues,
             countries: [...formValues.countries, e.target.value],
          });
+         setErrors(
+            validate({
+               ...formValues,
+               countries: [...formValues.countries, e.target.value],
+            })
+         );
       }
+   }
+
+   function handleDelete(e) {
+      setFormValues({
+         ...formValues,
+         countries: [
+            ...formValues.countries.filter((c) => c !== e.target.value),
+         ],
+      });
+      setErrors(
+         validate({
+            ...formValues,
+            countries: [
+               ...formValues.countries.filter((c) => c !== e.target.value),
+            ],
+         })
+      );
    }
 
    const handleInputChange = (e) => {
@@ -155,7 +184,6 @@ const Form = () => {
                      </td>
                      <td>
                         <input
-                           required
                            value={formValues.name}
                            onChange={handleInputChange}
                            name='name'
@@ -170,7 +198,6 @@ const Form = () => {
                      </td>
                      <td>
                         <input
-                           required
                            value={formValues.difficulty}
                            onChange={handleInputChange}
                            name='difficulty'
@@ -187,7 +214,6 @@ const Form = () => {
                      </td>
                      <td>
                         <input
-                           required
                            value={formValues.duration}
                            onChange={handleInputChange}
                            name='duration'
@@ -204,7 +230,6 @@ const Form = () => {
                      </td>
                      <td>
                         <select
-                           required
                            value={formValues.season}
                            name='season'
                            onChange={(e) => handleInputChange(e)}>
@@ -232,6 +257,15 @@ const Form = () => {
                   formValues.countries.map((e) => {
                      return (
                         <div className='formcard' key={Math.random()}>
+                           <div>
+                              <button
+                                 className='formcardbuttondelete'
+                                 name='countries'
+                                 value={e}
+                                 onClick={(e) => handleDelete(e)}>
+                                 X
+                              </button>
+                           </div>
                            <FormCard name={e} />
                         </div>
                      );
