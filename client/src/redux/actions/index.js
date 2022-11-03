@@ -14,16 +14,16 @@ export function getCountries() {
 
 export function filterByActivity(payload) {
    return {
-      type: "FILTER_ACTIVITY",
+      type: "FILTER_BY_ACTIVITY",
       payload,
    };
 }
 
-export function getActivities() {
+export function getActivity() {
    return async function (dispatch) {
       let call = await axios("http://localhost:3001/activities");
       return dispatch({
-         type: "FILTER_ACTIVITY",
+         type: "GET_ACTIVITY",
          payload: call.data,
       });
    };

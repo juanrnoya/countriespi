@@ -7,10 +7,10 @@ import Image from "./countries.png";
 
 import {
    getCountries,
+   getActivity,
    sortByPopulation,
    filterByContinent,
    sortByAlp,
-   // getActivities,
    filterByActivity,
 } from "../../redux/actions";
 
@@ -42,7 +42,7 @@ export default function Home() {
 
    useEffect(() => {
       dispatch(getCountries());
-      // dispatch(getActivities());
+      dispatch(getActivity());
    }, [dispatch]);
 
    const handleClick = (e) => {
@@ -88,11 +88,17 @@ export default function Home() {
                <button onClick={(e) => handleClick(e)}>RELOAD</button>
             </div>
             <div className='sub-nav'>
-               <select onChange={(e) => handleFilterByActivity(e)}>
-                  <option>By Activity</option>
-                  <option value='Without Activities'>Without Activities</option>
-                  <option value='With Activities'>With Activities</option>
+               <select
+                  name='activities'
+                  onChange={(e) => handleFilterByActivity(e)}>
+                  <option value={""}></option>
+                  {allActivities.map((e) => (
+                     <option type='text' value={e.name} key={e.id}>
+                        {e.name}
+                     </option>
+                  ))}
                </select>
+
                <br />
                <select onChange={(e) => handleSortAlp(e)}>
                   <option>Countries Alphabetically</option>

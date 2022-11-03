@@ -61,7 +61,6 @@ const getCountries = async (req, res) => {
             where: {
                name: { [Op.iLike]: `%${name}%` },
             },
-            //include: { model: Activity }, //comprobar si es necesario
          });
          if (countriesByName.length) {
             return res.status(200).send(countriesByName);
@@ -97,19 +96,40 @@ const getId = async (req, res) => {
 };
 
 const getActivity = async (req, res) => {
-   try {
-      const allActivities = await Activity.findAll({
-         include: [
-            {
-               model: Country,
-               attributes: ["name"],
-               through: { attributes: [] },
+   const { name } = req.query;
+   if (!name) {
+      try {
+         const allActivities = await Activity.findAll({
+            include: [
+               {
+                  model: Country,
+                  attributes: ["name"],
+                  through: { attributes: [] },
+               },
+            ],
+         });
+         return res.status(200).send(allActivities);
+      } catch (error) {
+         return res.status(400).send("It doesnt work");
+      }
+   } else {
+      try {
+         const countriesByActivity = await Activity.findAll({
+            where: {
+               name: name,
             },
-         ],
-      });
-      return res.status(200).send(allActivities);
-   } catch (error) {
-      return res.status(400).send("It doesnt work");
+         });
+         if (countriesByActivity.length) {
+            return res.status(200).send(countriesByActivity);
+         } else {
+            return res.status(404).send({
+               error: "Activity not Found",
+               name: `${name}`,
+            });
+         }
+      } catch (error) {
+         console.log(error);
+      }
    }
 };
 

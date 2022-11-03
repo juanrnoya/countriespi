@@ -3,11 +3,10 @@ import { strictEqual } from "assert";
 /** @format */
 const initialState = {
    country: [],
+   activity: [],
    population: [],
    allCountries: [],
    alphabetically: [],
-   activity: [],
-   detail: {},
 };
 function rootReducer(state = initialState, action) {
    switch (action.type) {
@@ -23,23 +22,17 @@ function rootReducer(state = initialState, action) {
             detail: action.payload,
          };
 
-      case "FILTER_ACTIVITY":
-         const allCountries2 = state.allCountries;
-
-         if (action.payload === "With Activities") {
-            var CountriesFilterByActivity = allCountries2.filter(
-               (e) => e.activities.length
-            );
-         } else if (action.payload === "Without Activities") {
-            var CountriesFilterByActivity = allCountries2.filter(
-               (e) => !e.activities.length
-            );
-         } else {
-            var CountriesFilterByActivity = allCountries2;
-         }
+      case "FILTER_BY_ACTIVITY":
+         const allActivities = state.activity;
+         const CountriesFilterByActivity =
+            action.payload === "All activities"
+               ? allActivities
+               : allActivities.filter((e) =>
+                    e.countries.includes(action.payload)
+                 );
          return {
             ...state,
-            country: CountriesFilterByActivity,
+            countries: CountriesFilterByActivity,
          };
 
       case "FILTER_CONTINENT":
