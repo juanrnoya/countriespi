@@ -11,7 +11,6 @@ function Detail() {
    const countryDetail = useSelector((state) => state.detail);
    useEffect(() => {
       dispatch(getCountryDetail(id));
-      console.log(countryDetail);
    }, []);
 
    return (

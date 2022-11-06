@@ -12,13 +12,6 @@ export function getCountries() {
    };
 }
 
-export function filterByActivity(payload) {
-   return {
-      type: "FILTER_BY_ACTIVITY",
-      payload,
-   };
-}
-
 export function getActivity() {
    return async function (dispatch) {
       let call = await axios("http://localhost:3001/activities");
@@ -39,21 +32,21 @@ export function getCountryDetail(id) {
    };
 }
 
-// export function getCountryByName(payload) {
-//    return async function (dispatch) {
-//       try {
-//          let country = await axios(
-//             `http://localhost:3001/countries?name=${payload}`
-//          );
-//          return dispatch({
-//             type: "GET_COUNTRY_BY_NAME",
-//             payload: country.data,
-//          });
-//       } catch (error) {
-//          console.log(error);
-//       }
-//    };
-// }
+export function getCountryByName(payload) {
+   return async function (dispatch) {
+      try {
+         let country = await axios(
+            `http://localhost:3001/countries?name=${payload}`
+         );
+         return dispatch({
+            type: "GET_COUNTRY_BY_NAME",
+            payload: country.data,
+         });
+      } catch (error) {
+         console.log(error);
+      }
+   };
+}
 
 export function sortByPopulation(payload) {
    return {
@@ -62,6 +55,12 @@ export function sortByPopulation(payload) {
    };
 }
 
+export function filterByActivity(payload) {
+   return {
+      type: "FILTER_BY_ACTIVITY",
+      payload,
+   };
+}
 export function filterByContinent(payload) {
    return {
       type: "FILTER_CONTINENT",

@@ -91,7 +91,7 @@ export default function Home() {
                <select
                   name='activities'
                   onChange={(e) => handleFilterByActivity(e)}>
-                  <option value={""}></option>
+                  <option value='All Activities'>All Activities</option>
                   {allActivities.map((e) => (
                      <option type='text' value={e.name} key={e.id}>
                         {e.name}

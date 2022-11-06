@@ -35,16 +35,15 @@ const Form = () => {
 
    useEffect(() => console.log(), []);
 
-   console.group();
-   console.table("FORMVALUES", formValues);
-   console.groupEnd();
+   // console.group();
+   // console.table("FORMVALUES", formValues);
+   // console.groupEnd();
 
-   console.group();
-   console.log("ERRORS", errors);
-   console.groupEnd();
+   // console.group();
+   // console.log("ERRORS", errors);
+   // console.groupEnd();
 
    function validate(form) {
-      console.log("form" + form.name);
       let error = {};
       if (form.countries.length === 0) {
          error.countries = "Choose a country";
