@@ -11,7 +11,8 @@ const Form = () => {
    const dispatch = useDispatch();
    const history = useHistory();
 
-   const allCountry = useSelector((state) => state.country); /**idea orderer*/
+   const allCountries = useSelector((state) => state.countries);
+   const allActivities = useSelector((state) => state.activities);
 
    const [formValues, setFormValues] = useState({
       countries: [],
@@ -35,14 +36,6 @@ const Form = () => {
 
    useEffect(() => console.log(), []);
 
-   // console.group();
-   // console.table("FORMVALUES", formValues);
-   // console.groupEnd();
-
-   // console.group();
-   // console.log("ERRORS", errors);
-   // console.groupEnd();
-
    function validate(form) {
       let error = {};
       if (form.countries.length === 0) {
@@ -51,6 +44,7 @@ const Form = () => {
       if (!form.name) {
          error.name = "Activity name must be a string";
       }
+
       if (!form.difficulty) {
          // alert("Difficulty must be from 1 to 5");
          error.difficulty = "Choose a difficulty from 1 to 5";
@@ -169,7 +163,7 @@ const Form = () => {
                            name='countries'
                            onChange={(e) => handleSelect(e)}>
                            <option value={""}></option>
-                           {allCountry.map((e) => (
+                           {allCountries.map((e) => (
                               <option type='text' value={e.name} key={e.id}>
                                  {e.name}
                               </option>

@@ -22,8 +22,6 @@ export default function Home() {
    const allCountry = useSelector((state) => state.countries);
    const allActivities = useSelector((state) => state.activities);
 
-   console.log("soy allCountries", allCountry);
-
    const [order, setOrder] = useState("");
    const [currentPage, setCurrentPage] = useState(1);
    const [countryPerPage, setCountryPerPage] = useState(10);

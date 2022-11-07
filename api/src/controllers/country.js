@@ -15,7 +15,7 @@ const getCountriesb = async (req, res) => {
                attributes: ["name", "difficulty", "duration", "season"],
                through: { attributes: [] },
             },
-         }); //busca en base de datos por el metodo findAll(devuelve la info en un array)
+         });
 
          if (!allCountries.length) {
             //si está vacío

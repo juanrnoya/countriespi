@@ -43,6 +43,7 @@ export function getCountryByName(payload) {
             payload: country.data,
          });
       } catch (error) {
+         alert("Country not in List");
          console.log(error);
       }
    };
