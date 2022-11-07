@@ -12,11 +12,11 @@ export function getCountries() {
    };
 }
 
-export function getActivity() {
+export function getActivities() {
    return async function (dispatch) {
       let call = await axios("http://localhost:3001/activities");
       return dispatch({
-         type: "GET_ACTIVITY",
+         type: "GET_ACTIVITIES",
          payload: call.data,
       });
    };

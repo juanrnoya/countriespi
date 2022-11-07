@@ -5,7 +5,7 @@ const axios = require("axios");
 const { Op } = require("sequelize");
 require("dotenv").config(); //???
 
-const getCountries = async (req, res) => {
+const getCountriesb = async (req, res) => {
    const { name } = req.query;
    if (!name) {
       try {
@@ -76,7 +76,7 @@ const getCountries = async (req, res) => {
    }
 };
 
-const getId = async (req, res) => {
+const getIdb = async (req, res) => {
    const { id } = req.params;
    const searchId = await Country.findOne({
       where: {
@@ -95,7 +95,7 @@ const getId = async (req, res) => {
    }
 };
 
-const getActivity = async (req, res) => {
+const getActivityb = async (req, res) => {
    const { name } = req.query;
    if (!name) {
       try {
@@ -133,7 +133,7 @@ const getActivity = async (req, res) => {
    }
 };
 
-const postActivity = async (req, res) => {
+const postActivityb = async (req, res) => {
    const { name, difficulty, duration, season, countries } = req.body;
    if (!countries)
       return res.status(404).send({ error: "Please insert a country" });
@@ -156,4 +156,4 @@ const postActivity = async (req, res) => {
       return res.status(400).send(error);
    }
 };
-module.exports = { getCountries, getId, postActivity, getActivity };
+module.exports = { getCountriesb, getIdb, postActivityb, getActivityb };
