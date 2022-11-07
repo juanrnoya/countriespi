@@ -22,6 +22,8 @@ export default function Home() {
    const allCountry = useSelector((state) => state.countries);
    const allActivities = useSelector((state) => state.activities);
 
+   console.log("soy allCountries", allCountry);
+
    const [order, setOrder] = useState("");
    const [currentPage, setCurrentPage] = useState(1);
    const [countryPerPage, setCountryPerPage] = useState(10);
@@ -67,10 +69,12 @@ export default function Home() {
       e.preventDefault(e);
       dispatch(filterByActivity(e.target.value));
       setCurrentPage(1);
+      setOrder(e.target.value);
    }
 
    function handleSortAlp(e) {
       e.preventDefault(e);
+
       dispatch(sortByAlp(e.target.value));
       setCurrentPage(1);
       setOrder(e.target.value);

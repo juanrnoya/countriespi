@@ -99,7 +99,7 @@ const getActivityb = async (req, res) => {
    const { name } = req.query;
    if (!name) {
       try {
-         const allActivities = await Activity.findAll({
+         const activities = await Activity.findAll({
             include: [
                {
                   model: Country,
@@ -108,7 +108,7 @@ const getActivityb = async (req, res) => {
                },
             ],
          });
-         return res.status(200).send(allActivities);
+         return res.status(200).send(activities);
       } catch (error) {
          return res.status(400).send("It doesnt work");
       }
