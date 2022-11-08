@@ -12,7 +12,6 @@ const Form = () => {
    const history = useHistory();
 
    const allCountries = useSelector((state) => state.countries);
-   const allActivities = useSelector((state) => state.activities);
 
    const [formValues, setFormValues] = useState({
       countries: [],
@@ -57,7 +56,7 @@ const Form = () => {
       if (!form.season) {
          error.season = "Choose a season";
       }
-
+      console.log(error);
       return error;
    }
 
@@ -74,9 +73,11 @@ const Form = () => {
             duration: "",
             season: "",
          });
+         console.log(errors);
          alert("Activity Created Succesfully in: " + formValues.countries);
          history.push("/home");
       } else {
+         console.log(errors);
          let e = Object.values(errors);
          alert(JSON.stringify("Please correct: " + e));
       }
@@ -138,7 +139,6 @@ const Form = () => {
          }}>
          <div id='title-home'>COUNTRIES APP</div>
          <br />
-
          <div id='button-detail'>
             <Link to='/home'>
                <button name='volver' className='button-detail'>
@@ -150,7 +150,6 @@ const Form = () => {
             <div id='container-h2-form-page'>
                <p id='h2-form-page'> ADD NEW ACTIVITY</p>
             </div>
-
             <table align='center'>
                <tbody>
                   <tr>
