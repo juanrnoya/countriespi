@@ -133,6 +133,30 @@ const getActivityb = async (req, res) => {
    }
 };
 
+const postCountry = async (req, res) => {
+   const { name, id, flags, continents, capital, subregion, area, population } =
+      req.body;
+   try {
+      const newCountry = {
+         id,
+         name,
+         flags,
+         continents,
+         capital,
+         subregion,
+         area,
+         population,
+      };
+      const createCountry = await Country.create(newCountry);
+
+      Country.addCountry(createCountry);
+
+      return res.status(200).send("Activity created");
+   } catch {
+      return res.status(404).send(error);
+   }
+};
+
 const postActivityb = async (req, res) => {
    const { name, difficulty, duration, season, countries } = req.body;
 
@@ -197,11 +221,12 @@ const postActivityb = async (req, res) => {
    //             .status(404)
    //             .send("The country" + e + "already includes the activity");
    //    });
+
    try {
       const activ = await Activity.findOne({
          where: { name },
       });
-      console.log("soy activ", activ);
+
       if (activ === null) {
          const newActivity = {
             name,
@@ -228,4 +253,10 @@ const postActivityb = async (req, res) => {
    }
 };
 
-module.exports = { getCountriesb, getIdb, postActivityb, getActivityb };
+module.exports = {
+   getCountriesb,
+   getIdb,
+   postActivityb,
+   getActivityb,
+   postCountry,
+};

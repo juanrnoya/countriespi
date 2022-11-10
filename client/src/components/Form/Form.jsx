@@ -56,7 +56,7 @@ const Form = () => {
       if (!form.season) {
          error.season = "Choose a season";
       }
-      console.log(error);
+    
       return error;
    }
 
@@ -73,11 +73,11 @@ const Form = () => {
             duration: "",
             season: "",
          });
-         console.log(errors);
+       
          alert("Activity Created Succesfully in: " + formValues.countries);
          history.push("/home");
       } else {
-         console.log(errors);
+         
          let e = Object.values(errors);
          alert(JSON.stringify("Please correct: " + e));
       }
