@@ -11,7 +11,7 @@ const Form = () => {
    const dispatch = useDispatch();
    const history = useHistory();
 
-   const allCountry = useSelector((state) => state.country); /**idea orderer*/
+   const allCountries = useSelector((state) => state.countries);
 
    const [formValues, setFormValues] = useState({
       countries: [],
@@ -35,16 +35,7 @@ const Form = () => {
 
    useEffect(() => console.log(), []);
 
-   console.group();
-   console.table("FORMVALUES", formValues);
-   console.groupEnd();
-
-   console.group();
-   console.log("ERRORS", errors);
-   console.groupEnd();
-
    function validate(form) {
-      console.log("form" + form.name);
       let error = {};
       if (form.countries.length === 0) {
          error.countries = "Choose a country";
@@ -52,6 +43,7 @@ const Form = () => {
       if (!form.name) {
          error.name = "Activity name must be a string";
       }
+
       if (!form.difficulty) {
          // alert("Difficulty must be from 1 to 5");
          error.difficulty = "Choose a difficulty from 1 to 5";
@@ -64,7 +56,7 @@ const Form = () => {
       if (!form.season) {
          error.season = "Choose a season";
       }
-
+    
       return error;
    }
 
@@ -81,9 +73,11 @@ const Form = () => {
             duration: "",
             season: "",
          });
+       
          alert("Activity Created Succesfully in: " + formValues.countries);
          history.push("/home");
       } else {
+         
          let e = Object.values(errors);
          alert(JSON.stringify("Please correct: " + e));
       }
@@ -145,7 +139,6 @@ const Form = () => {
          }}>
          <div id='title-home'>COUNTRIES APP</div>
          <br />
-
          <div id='button-detail'>
             <Link to='/home'>
                <button name='volver' className='button-detail'>
@@ -157,27 +150,8 @@ const Form = () => {
             <div id='container-h2-form-page'>
                <p id='h2-form-page'> ADD NEW ACTIVITY</p>
             </div>
-
             <table align='center'>
                <tbody>
-                  <tr>
-                     <td>
-                        <label>Country Name: </label>
-                     </td>
-                     <td>
-                        <select
-                           value={formValues.countries}
-                           name='countries'
-                           onChange={(e) => handleSelect(e)}>
-                           <option value={""}></option>
-                           {allCountry.map((e) => (
-                              <option type='text' value={e.name} key={e.id}>
-                                 {e.name}
-                              </option>
-                           ))}
-                        </select>
-                     </td>
-                  </tr>
                   <tr>
                      <td>
                         <label>Activity Name: </label>
@@ -190,6 +164,24 @@ const Form = () => {
                            size='25'
                            type='text'
                            placeholder='Type the name of the activity'></input>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <label>Country Name: </label>
+                     </td>
+                     <td>
+                        <select
+                           value={formValues.countries}
+                           name='countries'
+                           onChange={(e) => handleSelect(e)}>
+                           <option value={""}></option>
+                           {allCountries.map((e) => (
+                              <option type='text' value={e.name} key={e.id}>
+                                 {e.name}
+                              </option>
+                           ))}
+                        </select>
                      </td>
                   </tr>
                   <tr>

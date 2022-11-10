@@ -7,7 +7,7 @@ import Image from "./countries.png";
 
 import {
    getCountries,
-   getActivity,
+   getActivities,
    sortByPopulation,
    filterByContinent,
    sortByAlp,
@@ -19,8 +19,8 @@ import Page from "../Page/Page";
 import SearchBar from "../SearchBar/SearchBar";
 
 export default function Home() {
-   const allCountry = useSelector((state) => state.country);
-   const allActivities = useSelector((state) => state.activity);
+   const allCountry = useSelector((state) => state.countries);
+   const allActivities = useSelector((state) => state.activities);
 
    const [order, setOrder] = useState("");
    const [currentPage, setCurrentPage] = useState(1);
@@ -42,7 +42,7 @@ export default function Home() {
 
    useEffect(() => {
       dispatch(getCountries());
-      dispatch(getActivity());
+      dispatch(getActivities());
    }, [dispatch]);
 
    const handleClick = (e) => {
@@ -67,10 +67,12 @@ export default function Home() {
       e.preventDefault(e);
       dispatch(filterByActivity(e.target.value));
       setCurrentPage(1);
+      setOrder(e.target.value);
    }
 
    function handleSortAlp(e) {
       e.preventDefault(e);
+
       dispatch(sortByAlp(e.target.value));
       setCurrentPage(1);
       setOrder(e.target.value);
@@ -91,14 +93,13 @@ export default function Home() {
                <select
                   name='activities'
                   onChange={(e) => handleFilterByActivity(e)}>
-                  <option value={""}></option>
+                  <option value='All Activities'>All Activities</option>
                   {allActivities.map((e) => (
                      <option type='text' value={e.name} key={e.id}>
                         {e.name}
                      </option>
                   ))}
                </select>
-
                <br />
                <select onChange={(e) => handleSortAlp(e)}>
                   <option>Countries Alphabetically</option>

@@ -76,8 +76,6 @@
    display: flex;
    justify-content: space-around;
    border: 30px;
-   position: sticky;
-   top: 0;
 }
 
 .search-bar {
