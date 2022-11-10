@@ -100,7 +100,6 @@ export default function Home() {
                      </option>
                   ))}
                </select>
-
                <br />
                <select onChange={(e) => handleSortAlp(e)}>
                   <option>Countries Alphabetically</option>

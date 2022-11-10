@@ -138,48 +138,91 @@ const postActivityb = async (req, res) => {
 
    if (!countries)
       return res.status(404).send({ error: "Please insert a country" });
-   const newActivity = {
-      name,
-      difficulty,
-      duration,
-      season,
-   };
+
+   //    try {
+   //       const activ = await Activity.findOne({
+   //          where: {
+   //             name,
+   //          },
+   //          include: {
+   //             model: Country,
+   //          },
+   //       });
+   //       console.log("soy activ", activ);
+
+   //       if (!Object.keys(activ)) {
+   //          const newActivity = {
+   //             name,
+   //             difficulty,
+   //             duration,
+   //             season,
+   //          };
+   //          const createActivity = await Activity.create(newActivity);
+
+   //          countries.map((e) => {
+   //             createActivity.addCountry(e.id);
+   //          });
+
+   //          return res.send("Activity created");
+   //       } else {
+   //          //crea la actividad
+
+   //          //devuelve error
+
+   //          return res.status(404).send({ error: "Activity exists" });
+   //       }
+   //    } catch (error) {
+   //       return res.status(400).send(error);
+   //    }
+   // };
+
+   //    console.log("soy countries", countries);
+   //    console.log("soy country y activity", Country, Activity);
+   //    const activ = await Activity.findOne({
+   //       where: {
+   //          name: name,
+   //       },
+   //       include: [
+   //          {
+   //             model: Country,
+   //             attributes: ["name"],
+   //             through: { attributes: [] },
+   //          },
+   //       ],
+   //    });
+   //    console.log("soy activity", activ);
+   //    countries.map((e) => {
+   //       if (activ && activ.countries.includes(e))
+   //          return res
+   //             .status(404)
+   //             .send("The country" + e + "already includes the activity");
+   //    });
    try {
-      console.log("soy countries", countries);
-      console.log(Country.dataValues, Activity.dataValues);
-
       const activ = await Activity.findOne({
-         where: {
-            name: name,
-         },
-         include: [
-            {
-               model: Country,
-               attributes: ["name", "population", "id"],
-               through: { attributes: [] },
+         where: { name },
+      });
+      console.log("soy activ", activ);
+      if (activ === null) {
+         const newActivity = {
+            name,
+            difficulty,
+            duration,
+            season,
+         };
+
+         const createActivity = await Activity.create(newActivity);
+
+         const findCountry = await Country.findAll({
+            where: {
+               name: countries,
             },
-         ],
-      });
+         });
 
-      console.log("soy activity", activ);
-
-      countries.map((e) => {
-         if (activ && activ.countries.includes(e))
-            return res
-               .status(404)
-               .send("The country" + e + "already includes the activity");
-      });
-
-      const createActivity = await Activity.create(newActivity);
-
-      const findCountry = await Country.findAll({
-         where: {
-            name: countries,
-         },
-      });
-
-      createActivity.addCountry(findCountry);
-      return res.status(200).send("Activity created");
+         createActivity.addCountry(findCountry);
+         return res.status(200).send("Activity created");
+      } else {
+         return res.status(405).send("Activity exists");
+      }
    } catch (error) {
       return res.status(400).send(error);
    }
