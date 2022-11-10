@@ -154,6 +154,20 @@ const Form = () => {
                <tbody>
                   <tr>
                      <td>
+                        <label>Activity Name: </label>
+                     </td>
+                     <td>
+                        <input
+                           value={formValues.name}
+                           onChange={handleInputChange}
+                           name='name'
+                           size='25'
+                           type='text'
+                           placeholder='Type the name of the activity'></input>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
                         <label>Country Name: </label>
                      </td>
                      <td>
@@ -168,20 +182,6 @@ const Form = () => {
                               </option>
                            ))}
                         </select>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <label>Activity Name: </label>
-                     </td>
-                     <td>
-                        <input
-                           value={formValues.name}
-                           onChange={handleInputChange}
-                           name='name'
-                           size='25'
-                           type='text'
-                           placeholder='Type the name of the activity'></input>
                      </td>
                   </tr>
                   <tr>

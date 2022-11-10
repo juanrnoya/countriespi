@@ -135,6 +135,7 @@ const getActivityb = async (req, res) => {
 
 const postActivityb = async (req, res) => {
    const { name, difficulty, duration, season, countries } = req.body;
+
    if (!countries)
       return res.status(404).send({ error: "Please insert a country" });
    const newActivity = {
@@ -144,16 +145,44 @@ const postActivityb = async (req, res) => {
       season,
    };
    try {
+      console.log("soy countries", countries);
+      console.log(Country.dataValues, Activity.dataValues);
+
+      const activ = await Activity.findOne({
+         where: {
+            name: name,
+         },
+         include: [
+            {
+               model: Country,
+               attributes: ["name", "population", "id"],
+               through: { attributes: [] },
+            },
+         ],
+      });
+
+      console.log("soy activity", activ);
+
+      countries.map((e) => {
+         if (activ && activ.countries.includes(e))
+            return res
+               .status(404)
+               .send("The country" + e + "already includes the activity");
+      });
+
       const createActivity = await Activity.create(newActivity);
+
       const findCountry = await Country.findAll({
          where: {
             name: countries,
          },
       });
+
       createActivity.addCountry(findCountry);
       return res.status(200).send("Activity created");
    } catch (error) {
       return res.status(400).send(error);
    }
 };
+
 module.exports = { getCountriesb, getIdb, postActivityb, getActivityb };
